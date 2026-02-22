@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Space_Grotesk, Space_Mono, DM_Serif_Display } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
 
 const spaceGrotesk = Space_Grotesk({
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="nl" className={`${spaceGrotesk.variable} ${spaceMono.variable} ${dmSerif.variable}`}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">{children}<Analytics /></body>
     </html>
   );
 }
