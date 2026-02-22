@@ -51,7 +51,7 @@ export async function generateMetadata({
         description: `Neem contact op met ${lawyer.name}, advocaat in ${city} gespecialiseerd in ${specialty}. ✓ NOvA-geregistreerd.${lawyer.telefoon ? ` Tel: ${lawyer.telefoon}.` : ''}`,
         openGraph: {
             title: `${lawyer.name} — Advocaat ${city}`,
-            description: `${specialty} advocaat in ${city}. Bekijk contactgegevens en specialisaties op AdvocatenHub.`,
+            description: `${specialty} advocaat in ${city}. Bekijk contactgegevens en specialisaties op AdvocaatVinder.`,
         },
     };
 }
@@ -117,7 +117,7 @@ export default async function LawyerPage({
                             Alle advocaten
                         </Link>
                         <Link href="/" style={{ marginLeft: 'auto', color: '#E8E4DD', textDecoration: 'none', fontWeight: 700, fontSize: 15, fontFamily: "var(--font-space-grotesk)" }}>
-                            AdvocatenHub
+                            AdvocaatVinder
                         </Link>
                     </div>
                 </header>

@@ -6,7 +6,7 @@ export default function HomePage() {
 
       {/* ── Navbar ── */}
       <header style={{ padding: '0 32px', height: 60, display: 'flex', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-        <span style={{ fontWeight: 800, fontSize: 18, color: '#E8E4DD', letterSpacing: '-0.02em' }}>AdvocatenHub</span>
+        <span style={{ fontWeight: 800, fontSize: 18, color: '#E8E4DD', letterSpacing: '-0.02em' }}>AdvocaatVinder</span>
         <nav style={{ marginLeft: 'auto', display: 'flex', gap: 24, alignItems: 'center' }}>
           <Link href="/advocaten" style={{ color: 'rgba(232,228,221,0.5)', textDecoration: 'none', fontSize: 13, fontFamily: "var(--font-space-mono)" }}>Advocaten</Link>
         </nav>
@@ -58,7 +58,7 @@ export default function HomePage() {
       {/* ── Footer ── */}
       <footer style={{ borderTop: '1px solid rgba(255,255,255,0.06)', padding: '20px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
         <span style={{ fontFamily: "var(--font-space-mono)", fontSize: 11, color: 'rgba(232,228,221,0.2)' }}>
-          © 2025 AdvocatenHub
+          © 2025 AdvocaatVinder
         </span>
         <span style={{ fontFamily: "var(--font-space-mono)", fontSize: 11, color: 'rgba(34,197,94,0.7)', display: 'flex', alignItems: 'center', gap: 6 }}>
           <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#22c55e', display: 'inline-block', animation: 'pulse 2s infinite' }} />

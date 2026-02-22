@@ -24,14 +24,14 @@ const dmSerif = DM_Serif_Display({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | AdvocatenHub',
-    default: 'AdvocatenHub — Vind de juiste advocaat in Nederland',
+    template: '%s | AdvocaatVinder',
+    default: 'AdvocaatVinder — Vind de juiste advocaat in Nederland',
   },
   description:
-    'AdvocatenHub is de grootste gids van Nederlandse advocaten. Zoek op naam, stad, of rechtsgebied. Meer dan 18.000 NOvA-geregistreerde advocaten.',
-  metadataBase: new URL('https://advocatenhub.nl'),
+    'AdvocaatVinder is de grootste gids van Nederlandse advocaten. Zoek op naam, stad, of rechtsgebied. Meer dan 18.000 NOvA-geregistreerde advocaten.',
+  metadataBase: new URL('https://www.advocaatvinder.nl'),
   openGraph: {
-    siteName: 'AdvocatenHub',
+    siteName: 'AdvocaatVinder',
     type: 'website',
     locale: 'nl_NL',
   },
