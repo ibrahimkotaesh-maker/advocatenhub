@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 86400; // Re-generate daily
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = 'https://advocatenhub.nl';
+    const baseUrl = 'https://www.advocaatvinder.nl';
 
     // Static pages
     const static_pages: MetadataRoute.Sitemap = [
