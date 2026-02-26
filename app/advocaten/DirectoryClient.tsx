@@ -165,14 +165,8 @@ function LawyerCard({ lawyer }: { lawyer: Lawyer }) {
     return (
         <article style={{ background: 'white', borderRadius: 20, border: '1px solid rgba(17,17,17,0.07)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16, padding: '20px 20px 0' }}>
-                <div style={{ width: 64, height: 64, borderRadius: 16, flexShrink: 0, background: avatarBg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, fontWeight: 700, color: avatarText, position: 'relative', overflow: 'hidden', boxShadow: `0 4px 12px ${avatarBg}55` }}>
+                <div style={{ width: 64, height: 64, borderRadius: 16, flexShrink: 0, background: avatarBg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, fontWeight: 700, color: avatarText, boxShadow: `0 4px 12px ${avatarBg}55` }}>
                     {initials}
-                    {website && (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={`https://www.google.com/s2/favicons?domain=${shortDomain(website)}&sz=128`} alt="Logo"
-                            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', background: 'white', padding: 8 }}
-                            onError={e => { (e.currentTarget as HTMLImageElement).style.opacity = '0'; }} />
-                    )}
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
                     <Link href={`/advocaat/${slug}`} style={{ textDecoration: 'none' }}>

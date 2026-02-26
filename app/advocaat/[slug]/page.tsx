@@ -139,18 +139,9 @@ export default async function LawyerPage({
                                 width: 88, height: 88, borderRadius: 20, flexShrink: 0,
                                 background: avatarBg, display: 'flex', alignItems: 'center', justifyContent: 'center',
                                 fontSize: 28, fontWeight: 700, color: avatarText,
-                                position: 'relative', overflow: 'hidden',
                                 boxShadow: `0 8px 24px ${avatarBg}55`,
                             }}>
                                 {initials}
-                                {website && (
-                                    // eslint-disable-next-line @next/next/no-img-element
-                                    <img
-                                        src={`https://www.google.com/s2/favicons?domain=${shortDomain(website)}&sz=128`}
-                                        alt="Logo"
-                                        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain', background: 'white', padding: 10 }}
-                                    />
-                                )}
                             </div>
 
                             {/* Info */}
@@ -241,10 +232,9 @@ export default async function LawyerPage({
                                     width="100%"
                                     height="100%"
                                     style={{ minHeight: 220, border: 'none', display: 'block' }}
-                                    src={`https://www.openstreetmap.org/export/embed.html?bbox=${encodeURIComponent(
-                                        '3.0,50.7,7.2,53.7'
-                                    )}&layer=mapnik&marker=${encodeURIComponent(lawyer.bezoekadres)}`}
+                                    src={`https://maps.google.com/maps?q=${encodeURIComponent(lawyer.bezoekadres)}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
                                     loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
                                 />
                             </div>
                         )}
