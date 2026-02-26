@@ -30,6 +30,8 @@ export default function DirectoryClient() {
     const [filtered, setFiltered] = useState<Lawyer[]>([]);
     const [searchText, setSearchText] = useState('');
     const [activeField, setActiveField] = useState('');
+    const [activeCity, setActiveCity] = useState('');
+    const [topCities, setTopCities] = useState<string[]>([]);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
     const PER_PAGE = 24;
@@ -55,6 +57,11 @@ export default function DirectoryClient() {
                 _website: cleanWebsite(l.website),
             }));
             setAllLawyers(enriched);
+            // Compute top cities by frequency
+            const cityCounts: Record<string, number> = {};
+            enriched.forEach(l => { if (l._city) cityCounts[l._city] = (cityCounts[l._city] || 0) + 1; });
+            const sorted = Object.entries(cityCounts).sort((a, b) => b[1] - a[1]).slice(0, 12).map(([c]) => c);
+            setTopCities(sorted);
             setLoading(false);
         }
         fetchAll();
@@ -73,11 +80,15 @@ export default function DirectoryClient() {
         if (activeField) {
             res = res.filter(l => (l.rechtsgebieden || '').toLowerCase().includes(activeField.toLowerCase()));
         }
+        if (activeCity) {
+            res = res.filter(l => (l._city || '').toLowerCase() === activeCity.toLowerCase());
+        }
         setFiltered(res);
         setPage(1);
-    }, [searchText, activeField, allLawyers]);
+    }, [searchText, activeField, activeCity, allLawyers]);
 
-    const toggleField = useCallback((f: string) => setActiveField(p => p === f ? '' : f), []);
+    const toggleField = useCallback((f: string) => { setActiveField(p => p === f ? '' : f); }, []);
+    const toggleCity = useCallback((c: string) => { setActiveCity(p => p === c ? '' : c); }, []);
     const visible = filtered.slice(0, page * PER_PAGE);
     const hasMore = visible.length < filtered.length;
 
@@ -119,6 +130,23 @@ export default function DirectoryClient() {
                                 border: 'none', transition: 'all 0.15s',
                             }}>
                             {f || 'Alle'}
+                        </button>
+                    ))}
+                </div>
+
+                {/* City filter chips */}
+                <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)', padding: '8px 20px', display: 'flex', gap: 6, overflowX: 'auto' }}>
+                    <span style={{ color: 'rgba(232,228,221,0.3)', fontFamily: "var(--font-space-mono)", fontSize: 11, whiteSpace: 'nowrap', lineHeight: '28px' }}>STAD:</span>
+                    {['', ...topCities].map(c => (
+                        <button key={c || 'alle-steden'} onClick={() => toggleCity(c)}
+                            style={{
+                                padding: '5px 12px', borderRadius: 100, fontSize: 11,
+                                fontFamily: "var(--font-space-mono)", whiteSpace: 'nowrap', cursor: 'pointer',
+                                background: activeCity === c ? '#E63B2E' : 'rgba(255,255,255,0.07)',
+                                color: activeCity === c ? 'white' : 'rgba(232,228,221,0.6)',
+                                border: 'none', transition: 'all 0.15s',
+                            }}>
+                            {c || 'Alle'}
                         </button>
                     ))}
                 </div>
