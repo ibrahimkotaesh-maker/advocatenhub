@@ -85,6 +85,7 @@ export default function HomePage() {
         <span style={{ fontWeight: 800, fontSize: 18, color: '#E8E4DD', letterSpacing: '-0.02em' }}>AdvocaatVinder</span>
         <nav style={{ marginLeft: 'auto', display: 'flex', gap: 24, alignItems: 'center' }}>
           <Link href="/advocaten" style={{ color: 'rgba(232,228,221,0.5)', textDecoration: 'none', fontSize: 13, fontFamily: "var(--font-space-mono)" }}>Advocaten</Link>
+          <Link href="/blog" style={{ color: 'rgba(232,228,221,0.5)', textDecoration: 'none', fontSize: 13, fontFamily: "var(--font-space-mono)" }}>Blog</Link>
         </nav>
       </header>
 
@@ -130,6 +131,90 @@ export default function HomePage() {
           ))}
         </div>
       </main>
+
+      {/* ── Popular Cities ── */}
+      <section style={{ padding: '56px 32px 0', maxWidth: 960, margin: '0 auto', width: '100%' }}>
+        <h2 style={{ margin: '0 0 6px', fontSize: 20, fontWeight: 700, color: '#E8E4DD', letterSpacing: '-0.02em' }}>Advocaten per stad</h2>
+        <p style={{ margin: '0 0 20px', fontSize: 13, color: 'rgba(232,228,221,0.35)', fontFamily: "var(--font-space-mono)" }}>Vind een advocaat bij u in de buurt</p>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+          {[
+            { slug: 'amsterdam', name: 'Amsterdam' },
+            { slug: 'rotterdam', name: 'Rotterdam' },
+            { slug: 'den-haag', name: 'Den Haag' },
+            { slug: 'utrecht', name: 'Utrecht' },
+            { slug: 'eindhoven', name: 'Eindhoven' },
+            { slug: 'groningen', name: 'Groningen' },
+            { slug: 'tilburg', name: 'Tilburg' },
+            { slug: 'breda', name: 'Breda' },
+            { slug: 'arnhem', name: 'Arnhem' },
+            { slug: 'maastricht', name: 'Maastricht' },
+            { slug: 'haarlem', name: 'Haarlem' },
+            { slug: 'nijmegen', name: 'Nijmegen' },
+          ].map(c => (
+            <Link key={c.slug} href={`/advocaten/${c.slug}`} style={{
+              background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: 100, padding: '8px 18px', fontSize: 13,
+              textDecoration: 'none', color: 'rgba(232,228,221,0.6)', fontWeight: 500,
+              transition: 'all 0.15s',
+            }}>
+              {c.name}
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Popular Specialties ── */}
+      <section style={{ padding: '40px 32px 0', maxWidth: 960, margin: '0 auto', width: '100%' }}>
+        <h2 style={{ margin: '0 0 6px', fontSize: 20, fontWeight: 700, color: '#E8E4DD', letterSpacing: '-0.02em' }}>Rechtsgebieden</h2>
+        <p style={{ margin: '0 0 20px', fontSize: 13, color: 'rgba(232,228,221,0.35)', fontFamily: "var(--font-space-mono)" }}>Zoek op specialisatie</p>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+          {[
+            { slug: 'familierecht', name: 'Familierecht', icon: '👨‍👩‍👧‍👦' },
+            { slug: 'arbeidsrecht', name: 'Arbeidsrecht', icon: '💼' },
+            { slug: 'strafrecht', name: 'Strafrecht', icon: '⚖️' },
+            { slug: 'ondernemingsrecht', name: 'Ondernemingsrecht', icon: '🏢' },
+            { slug: 'huurrecht', name: 'Huurrecht', icon: '🏠' },
+            { slug: 'bestuursrecht', name: 'Bestuursrecht', icon: '🏛️' },
+            { slug: 'letselschaderecht', name: 'Letselschade', icon: '🩹' },
+            { slug: 'immigratierecht', name: 'Immigratierecht', icon: '🌍' },
+            { slug: 'erfrecht', name: 'Erfrecht', icon: '📜' },
+            { slug: 'belastingrecht', name: 'Belastingrecht', icon: '🧾' },
+          ].map(s => (
+            <Link key={s.slug} href={`/advocaten/rechtsgebied/${s.slug}`} style={{
+              background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: 100, padding: '8px 18px', fontSize: 13,
+              textDecoration: 'none', color: 'rgba(232,228,221,0.6)', fontWeight: 500,
+              transition: 'all 0.15s',
+            }}>
+              {s.icon} {s.name}
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Blog Preview ── */}
+      <section style={{ padding: '40px 32px 56px', maxWidth: 960, margin: '0 auto', width: '100%' }}>
+        <h2 style={{ margin: '0 0 6px', fontSize: 20, fontWeight: 700, color: '#E8E4DD', letterSpacing: '-0.02em' }}>Juridisch advies</h2>
+        <p style={{ margin: '0 0 20px', fontSize: 13, color: 'rgba(232,228,221,0.35)', fontFamily: "var(--font-space-mono)" }}>Lees onze artikelen over advocaatkosten en rechtsbijstand</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 12 }}>
+          {[
+            { slug: 'wat-kost-een-advocaat', title: 'Wat kost een advocaat per uur?', tag: 'Kosten' },
+            { slug: 'gesubsidieerde-rechtsbijstand', title: 'Gesubsidieerde rechtsbijstand uitleg', tag: 'Rechtsbijstand' },
+            { slug: 'pro-deo-advocaat', title: 'Pro deo advocaat: uw rechten', tag: 'Rechtsbijstand' },
+            { slug: 'no-cure-no-pay-advocaat', title: 'No cure no pay: hoe werkt het?', tag: 'Kosten' },
+            { slug: 'advocaat-kiezen-tips', title: '7 tips voor de juiste advocaat', tag: 'Tips' },
+          ].map(a => (
+            <Link key={a.slug} href={`/blog/${a.slug}`} style={{
+              background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)',
+              borderRadius: 16, padding: '16px 20px', textDecoration: 'none',
+              display: 'flex', flexDirection: 'column', gap: 8, transition: 'all 0.15s',
+            }}>
+              <span style={{ fontSize: 10, fontFamily: "var(--font-space-mono)", color: '#E63B2E', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}>{a.tag}</span>
+              <span style={{ fontSize: 14, fontWeight: 600, color: '#E8E4DD', lineHeight: 1.4 }}>{a.title}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       {/* ── Footer ── */}
       <footer style={{ borderTop: '1px solid rgba(255,255,255,0.06)', padding: '20px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
