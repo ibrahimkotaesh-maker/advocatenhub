@@ -1,8 +1,84 @@
 import Link from 'next/link';
 
+// ─── FAQ + BreadcrumbList JSON-LD for Homepage SEO ─────────────────────────────
+const homepageJsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.advocaatvinder.nl',
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Hoe vind ik een goede advocaat in Nederland?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Via AdvocaatVinder kunt u zoeken door meer dan 18.670 NOvA-geregistreerde advocaten in Nederland. Filter op rechtsgebied (zoals familierecht, arbeidsrecht of strafrecht), stad, of naam om de juiste advocaat te vinden. Alle advocaten op AdvocaatVinder zijn geregistreerd bij de Nederlandse Orde van Advocaten.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Wat kost een advocaat per uur in Nederland?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Het uurtarief van een advocaat in Nederland varieert doorgaans tussen €150 en €350 per uur, afhankelijk van de ervaring, het rechtsgebied en de locatie. Gespecialiseerde advocaten in niche-gebieden zoals ondernemingsrecht of letselschade kunnen hogere tarieven hanteren. Voor mensen met een laag inkomen is gesubsidieerde rechtsbijstand (pro deo) beschikbaar.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Wat is een pro deo advocaat en hoe vraag ik er een aan?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Een pro deo advocaat (ook wel toevoegingsadvocaat) is een advocaat die juridische bijstand verleent met gesubsidieerde kosten via de Raad voor Rechtsbijstand. Iedereen met een inkomen onder een bepaalde grens kan hiervoor in aanmerking komen. U kunt via het Juridisch Loket of rechtstreeks bij een advocaat een toevoeging aanvragen.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Wat zijn de meest voorkomende rechtsgebieden?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'De meest voorkomende rechtsgebieden in Nederland zijn: familierecht (echtscheiding, voogdij), arbeidsrecht (ontslag, arbeidsovereenkomsten), strafrecht, ondernemingsrecht, huurrecht, letselschade, bestuursrecht en vreemdelingenrecht. Op AdvocaatVinder kunt u filteren op elk van deze specialisaties.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Hoeveel advocaten zijn er in Nederland?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Er zijn meer dan 18.670 advocaten geregistreerd bij de Nederlandse Orde van Advocaten (NOvA), verspreid over 11 arrondissementen in heel Nederland. AdvocaatVinder biedt een volledig overzicht van al deze geregistreerde advocaten.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Kan ik een advocaat zoeken op specialisatie?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Ja, op AdvocaatVinder kunt u advocaten filteren op hun rechtsgebied of specialisatie. Veelgebruikte filters zijn onder andere familierecht, arbeidsrecht, strafrecht, ondernemingsrecht en letselschade. U kunt ook zoeken op stad of arrondissement om een advocaat bij u in de buurt te vinden.',
+        },
+      },
+    ],
+  },
+];
+
 export default function HomePage() {
   return (
     <div style={{ minHeight: '100vh', background: '#111111', fontFamily: "var(--font-space-grotesk)", display: 'flex', flexDirection: 'column' }}>
+
+      {/* FAQ + BreadcrumbList structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageJsonLd) }}
+      />
 
       {/* ── Navbar ── */}
       <header style={{ padding: '0 32px', height: 60, display: 'flex', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>

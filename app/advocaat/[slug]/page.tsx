@@ -76,7 +76,7 @@ export default async function LawyerPage({
     const { bg: avatarBg, text: avatarText } = getAvatarStyle(lawyer.name || '');
     const initials = getInitials(lawyer.name || '');
 
-    // ── JSON-LD Structured Data (LegalService) ────────────────────────────────
+    // ── JSON-LD Structured Data (LegalService + BreadcrumbList) ───────────────
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'LegalService',
@@ -104,12 +104,41 @@ export default async function LawyerPage({
         },
     };
 
+    const breadcrumbJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: 'https://www.advocaatvinder.nl',
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Advocaten',
+                item: 'https://www.advocaatvinder.nl/advocaten',
+            },
+            {
+                '@type': 'ListItem',
+                position: 3,
+                name: lawyer.name || 'Advocaat',
+                item: `https://www.advocaatvinder.nl/advocaat/${slug}`,
+            },
+        ],
+    };
+
     return (
         <>
             {/* Inject JSON-LD */}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
             />
 
             <div style={{ minHeight: '100vh', background: '#F5F3EE', fontFamily: "var(--font-space-grotesk)" }}>

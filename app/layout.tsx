@@ -41,10 +41,55 @@ export const metadata: Metadata = {
   },
 };
 
+// ─── Global JSON-LD: WebSite + Organization ────────────────────────────────
+const globalJsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'AdvocaatVinder',
+    url: 'https://www.advocaatvinder.nl',
+    description:
+      'De grootste onafhankelijke gids van Nederlandse advocaten. Zoek op naam, stad, of rechtsgebied.',
+    inLanguage: 'nl',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate:
+          'https://www.advocaatvinder.nl/advocaten?naam={search_term_string}',
+      },
+      'query-input': 'required name=search_term_string',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'AdvocaatVinder',
+    url: 'https://www.advocaatvinder.nl',
+    logo: 'https://www.advocaatvinder.nl/favicon.ico',
+    description:
+      'De grootste onafhankelijke gids van 18.670+ NOvA-geregistreerde advocaten in Nederland.',
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer support',
+      availableLanguage: ['Dutch', 'English'],
+    },
+    sameAs: [],
+  },
+];
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="nl" className={`${spaceGrotesk.variable} ${spaceMono.variable} ${dmSerif.variable}`}>
-      <body className="antialiased">{children}<Analytics /></body>
+      <body className="antialiased">
+        {/* Global structured data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(globalJsonLd) }}
+        />
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
