@@ -42,6 +42,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.85,
     }));
 
+    // Blog article pages
+    const BLOG_SLUGS = [
+        'wat-kost-een-advocaat', 'gesubsidieerde-rechtsbijstand',
+        'pro-deo-advocaat', 'no-cure-no-pay-advocaat', 'advocaat-kiezen-tips',
+    ];
+    const blogUrls: MetadataRoute.Sitemap = [
+        { url: `${baseUrl}/blog`, changeFrequency: 'weekly' as const, priority: 0.8 },
+        ...BLOG_SLUGS.map(s => ({
+            url: `${baseUrl}/blog/${s}`,
+            changeFrequency: 'monthly' as const,
+            priority: 0.75,
+        })),
+    ];
+
     // Dynamic lawyer pages — fetch all IDs + names
     let all: { id: string; name: string; bezoekadres: string | null }[] = [];
     let from = 0;
@@ -62,5 +76,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.7,
     }));
 
-    return [...static_pages, ...cityUrls, ...specialtyUrls, ...lawyerUrls];
+    return [...static_pages, ...cityUrls, ...specialtyUrls, ...blogUrls, ...lawyerUrls];
 }
