@@ -23,7 +23,7 @@ async function getLawyerBySlug(slug: string): Promise<Lawyer | null> {
             const keyword = parts[i];
             const { data, error } = await supabase
                 .from('advocaten')
-                .select('id,name,bezoekadres,rechtsgebieden,telefoon,email,website,arrondissement,profile_url')
+                .select('id,name,bezoekadres,rechtsgebieden,telefoon,email,website,arrondissement,profile_url,foto_url,bio_text,extra_specializations,lawyer_type')
                 .ilike('name', `%${keyword}%`)
                 .limit(50);
             if (error || !data) continue;
@@ -135,14 +135,26 @@ export default async function LawyerPage({
 
                         <div style={{ padding: '32px 32px 28px', display: 'flex', gap: 24, alignItems: 'flex-start', flexWrap: 'wrap' }}>
                             {/* Avatar */}
-                            <div style={{
-                                width: 88, height: 88, borderRadius: 20, flexShrink: 0,
-                                background: avatarBg, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                fontSize: 28, fontWeight: 700, color: avatarText,
-                                boxShadow: `0 8px 24px ${avatarBg}55`,
-                            }}>
-                                {initials}
-                            </div>
+                            {lawyer.foto_url ? (
+                                <div style={{
+                                    width: 88, height: 88, borderRadius: 20, flexShrink: 0,
+                                    overflow: 'hidden',
+                                    boxShadow: `0 8px 24px rgba(0,0,0,0.15)`,
+                                }}>
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img src={lawyer.foto_url} alt={lawyer.name}
+                                        style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                </div>
+                            ) : (
+                                <div style={{
+                                    width: 88, height: 88, borderRadius: 20, flexShrink: 0,
+                                    background: avatarBg, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                    fontSize: 28, fontWeight: 700, color: avatarText,
+                                    boxShadow: `0 8px 24px ${avatarBg}55`,
+                                }}>
+                                    {initials}
+                                </div>
+                            )}
 
                             {/* Info */}
                             <div style={{ flex: 1, minWidth: 200 }}>
@@ -262,6 +274,30 @@ export default async function LawyerPage({
                             </Link>
                         )}
                     </div>
+
+                    {/* ── Bio Section (from scraped website) ── */}
+                    {lawyer.bio_text && (
+                        <div style={{ background: 'white', borderRadius: 20, border: '1px solid rgba(17,17,17,0.07)', padding: 28, marginBottom: 24 }}>
+                            <h2 style={{ margin: '0 0 12px', fontSize: 17, fontWeight: 700, color: '#111', fontFamily: 'var(--font-space-grotesk)' }}>
+                                Over {lawyer.name?.split(' ').pop()}
+                            </h2>
+                            <p style={{ margin: 0, fontSize: 14, lineHeight: 1.7, color: 'rgba(17,17,17,0.7)' }}>
+                                {lawyer.bio_text}
+                            </p>
+                            {lawyer.lawyer_type && (
+                                <div style={{ marginTop: 16, display: 'flex', gap: 8 }}>
+                                    <span style={{
+                                        padding: '4px 12px', borderRadius: 999, fontSize: 11, fontWeight: 600,
+                                        fontFamily: 'var(--font-space-mono)',
+                                        background: lawyer.lawyer_type === 'zelfstandig' ? '#E8F5E9' : '#E3F2FD',
+                                        color: lawyer.lawyer_type === 'zelfstandig' ? '#2E7D32' : '#1565C0',
+                                    }}>
+                                        {lawyer.lawyer_type === 'zelfstandig' ? '👤 Zelfstandig advocaat' : '🏢 Kantoor'}
+                                    </span>
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </main>
             </div>
         </>

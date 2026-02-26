@@ -15,4 +15,8 @@ export type Lawyer = {
     website: string | null;
     arrondissement: string | null;
     profile_url: string | null;
+    foto_url: string | null;
+    bio_text: string | null;
+    extra_specializations: string | null;
+    lawyer_type: string | null;
 };
