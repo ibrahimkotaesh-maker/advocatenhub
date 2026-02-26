@@ -21,6 +21,7 @@ type Lawyer = {
     rechtsgebieden: string | null; telefoon: string | null;
     email: string | null; website: string | null;
     arrondissement: string | null; profile_url: string | null;
+    foto_url: string | null;
     _city?: string; _fields?: string[]; _website?: string | null;
 };
 
@@ -40,7 +41,7 @@ export default function DirectoryClient() {
             while (true) {
                 const { data, error } = await supabase
                     .from('advocaten')
-                    .select('id,name,bezoekadres,rechtsgebieden,telefoon,email,website,arrondissement,profile_url')
+                    .select('id,name,bezoekadres,rechtsgebieden,telefoon,email,website,arrondissement,profile_url,foto_url')
                     .range(from, from + 999);
                 if (error || !data || data.length === 0) break;
                 all = [...all, ...data];
@@ -165,9 +166,13 @@ function LawyerCard({ lawyer }: { lawyer: Lawyer }) {
     return (
         <article style={{ background: 'white', borderRadius: 20, border: '1px solid rgba(17,17,17,0.07)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16, padding: '20px 20px 0' }}>
-                <div style={{ width: 64, height: 64, borderRadius: 16, flexShrink: 0, background: avatarBg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, fontWeight: 700, color: avatarText, boxShadow: `0 4px 12px ${avatarBg}55` }}>
-                    {initials}
-                </div>
+                {lawyer.foto_url ? (
+                    <img src={lawyer.foto_url} alt={lawyer.name || ''} style={{ width: 64, height: 64, borderRadius: 16, flexShrink: 0, objectFit: 'cover', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} />
+                ) : (
+                    <div style={{ width: 64, height: 64, borderRadius: 16, flexShrink: 0, background: avatarBg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, fontWeight: 700, color: avatarText, boxShadow: `0 4px 12px ${avatarBg}55` }}>
+                        {initials}
+                    </div>
+                )}
                 <div style={{ flex: 1, minWidth: 0 }}>
                     <Link href={`/advocaat/${slug}`} style={{ textDecoration: 'none' }}>
                         <h3 style={{ margin: 0, fontSize: 15, fontWeight: 700, color: '#111111', lineHeight: 1.25, letterSpacing: '-0.01em' }}>
