@@ -10,24 +10,28 @@ export const dynamic = 'force-dynamic';
 
 // ─── Fetch a single lawyer by slug (fast: name keyword search) ───────────────
 async function getLawyerBySlug(slug: string): Promise<Lawyer | null> {
-    // Extract a usable name keyword from the slug (skip title prefixes)
-    // Slug format: "p-f-slob-zwijndrecht" → search for "slob"
-    const parts = slug.split('-').filter(p => p.length > 2); // ignore initials like "p", "f"
-    if (parts.length === 0) return null;
+    // Strip title prefixes that may appear in old/external URLs
+    // e.g. "mr-jp-van-dam-utrecht" → "jp-van-dam-utrecht"
+    const cleanedSlug = slug.replace(/^(mr|dhr|mw|mevrouw|de-heer)-/, '');
+    const slugsToTry = [slug, cleanedSlug].filter((s, i, arr) => arr.indexOf(s) === i);
 
-    // Try increasingly broad keywords until we find a match
-    for (let i = 0; i < Math.min(parts.length, 3); i++) {
-        const keyword = parts[i];
-        const { data, error } = await supabase
-            .from('advocaten')
-            .select('id,name,bezoekadres,rechtsgebieden,telefoon,email,website,arrondissement,profile_url')
-            .ilike('name', `%${keyword}%`)
-            .limit(50);
-        if (error || !data) continue;
-        const match = data.find(
-            l => slugify(l.name || 'advocaat', extractCity(l.bezoekadres)) === slug
-        );
-        if (match) return match as Lawyer;
+    for (const trySlug of slugsToTry) {
+        const parts = trySlug.split('-').filter(p => p.length > 2);
+        if (parts.length === 0) continue;
+
+        for (let i = 0; i < Math.min(parts.length, 3); i++) {
+            const keyword = parts[i];
+            const { data, error } = await supabase
+                .from('advocaten')
+                .select('id,name,bezoekadres,rechtsgebieden,telefoon,email,website,arrondissement,profile_url')
+                .ilike('name', `%${keyword}%`)
+                .limit(50);
+            if (error || !data) continue;
+            const match = data.find(
+                l => slugify(l.name || 'advocaat', extractCity(l.bezoekadres)) === trySlug
+            );
+            if (match) return match as Lawyer;
+        }
     }
     return null;
 }
