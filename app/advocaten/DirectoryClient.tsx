@@ -23,7 +23,32 @@ type Lawyer = {
     arrondissement: string | null; profile_url: string | null;
     foto_url: string | null;
     _city?: string; _fields?: string[]; _website?: string | null;
+    _validPhoto?: boolean;
 };
+
+// Filter out junk scraped images — only show real portrait photos
+function isValidPhotoUrl(url: string | null): boolean {
+    if (!url) return false;
+    const lower = url.toLowerCase();
+    // Reject data URIs, SVGs, GIFs, tiny tracking pixels
+    if (lower.startsWith('data:')) return false;
+    if (lower.includes('.svg')) return false;
+    if (lower.includes('.gif')) return false;
+    // Reject common junk patterns
+    const junkPatterns = [
+        'cookie', 'loading', 'logo', 'embleem', 'icon', 'favicon',
+        'footer', 'slider', 'banner', 'shutterstock', 'stock',
+        'placeholder', 'default', 'voetbal', 'nullijn', 'template',
+        'toast-published', 'scale_crop/42', '/0/0/1/', 'cookies.png',
+    ];
+    if (junkPatterns.some(p => lower.includes(p))) return false;
+    // Must be https (not http)
+    if (!lower.startsWith('https://')) return false;
+    // Must have image extension or known image CDN
+    const imagePatterns = ['.jpg', '.jpeg', '.png', '.webp', 'wixstatic.com/media', 'squarespace-cdn.com', 'googleusercontent.com', 'framerusercontent.com', 'editmysite.com', 'usercontent.one'];
+    if (!imagePatterns.some(p => lower.includes(p))) return false;
+    return true;
+}
 
 export default function DirectoryClient() {
     const [allLawyers, setAllLawyers] = useState<Lawyer[]>([]);
@@ -55,6 +80,7 @@ export default function DirectoryClient() {
                 _city: extractCity(l.bezoekadres),
                 _fields: parseFields(l.rechtsgebieden),
                 _website: cleanWebsite(l.website),
+                _validPhoto: isValidPhotoUrl(l.foto_url),
             }));
             setAllLawyers(enriched);
             // Compute top cities by frequency
@@ -194,8 +220,18 @@ function LawyerCard({ lawyer }: { lawyer: Lawyer }) {
     return (
         <article style={{ background: 'white', borderRadius: 20, border: '1px solid rgba(17,17,17,0.07)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16, padding: '20px 20px 0' }}>
-                {lawyer.foto_url ? (
-                    <img src={lawyer.foto_url} alt={lawyer.name || ''} style={{ width: 64, height: 64, borderRadius: 16, flexShrink: 0, objectFit: 'cover', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }} />
+                {lawyer._validPhoto && lawyer.foto_url ? (
+                    <>
+                        <img
+                            src={lawyer.foto_url}
+                            alt={lawyer.name || ''}
+                            style={{ width: 64, height: 64, borderRadius: 16, flexShrink: 0, objectFit: 'cover', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+                            onError={(e) => { const img = e.target as HTMLImageElement; img.style.display = 'none'; const sib = img.nextElementSibling as HTMLElement | null; if (sib) sib.style.display = 'flex'; }}
+                        />
+                        <div style={{ width: 64, height: 64, borderRadius: 16, flexShrink: 0, background: avatarBg, display: 'none', alignItems: 'center', justifyContent: 'center', fontSize: 22, fontWeight: 700, color: avatarText, boxShadow: `0 4px 12px ${avatarBg}55` }}>
+                            {initials}
+                        </div>
+                    </>
                 ) : (
                     <div style={{ width: 64, height: 64, borderRadius: 16, flexShrink: 0, background: avatarBg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, fontWeight: 700, color: avatarText, boxShadow: `0 4px 12px ${avatarBg}55` }}>
                         {initials}
