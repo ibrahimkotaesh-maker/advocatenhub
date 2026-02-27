@@ -246,6 +246,17 @@ function LawyerCard({ lawyer }: { lawyer: Lawyer }) {
                             {initials}
                         </div>
                     </>
+                ) : website ? (
+                    <>
+                        <div style={{ width: 64, height: 64, borderRadius: 16, flexShrink: 0, background: '#fff', border: '1px solid rgba(17,17,17,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
+                            <img
+                                src={`https://www.google.com/s2/favicons?domain=${shortDomain(website)}&sz=128`}
+                                alt=""
+                                style={{ width: 36, height: 36, objectFit: 'contain' }}
+                                onError={(e) => { const img = e.target as HTMLImageElement; img.style.display = 'none'; const p = img.parentElement as HTMLElement; p.style.background = avatarBg; p.style.fontSize = '22px'; p.style.fontWeight = '700'; p.style.color = avatarText; p.textContent = initials; }}
+                            />
+                        </div>
+                    </>
                 ) : (
                     <div style={{ width: 64, height: 64, borderRadius: 16, flexShrink: 0, background: avatarBg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, fontWeight: 700, color: avatarText, boxShadow: `0 4px 12px ${avatarBg}55` }}>
                         {initials}
