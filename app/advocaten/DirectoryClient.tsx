@@ -56,6 +56,7 @@ export default function DirectoryClient() {
     const [searchText, setSearchText] = useState('');
     const [activeField, setActiveField] = useState('');
     const [activeCity, setActiveCity] = useState('');
+    const [photoOnly, setPhotoOnly] = useState(false);
     const [topCities, setTopCities] = useState<string[]>([]);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
@@ -109,9 +110,12 @@ export default function DirectoryClient() {
         if (activeCity) {
             res = res.filter(l => (l._city || '').toLowerCase() === activeCity.toLowerCase());
         }
+        if (photoOnly) {
+            res = res.filter(l => l._validPhoto);
+        }
         setFiltered(res);
         setPage(1);
-    }, [searchText, activeField, activeCity, allLawyers]);
+    }, [searchText, activeField, activeCity, photoOnly, allLawyers]);
 
     const toggleField = useCallback((f: string) => { setActiveField(p => p === f ? '' : f); }, []);
     const toggleCity = useCallback((c: string) => { setActiveCity(p => p === c ? '' : c); }, []);
@@ -141,6 +145,16 @@ export default function DirectoryClient() {
                     <span style={{ color: 'rgba(232,228,221,0.4)', fontFamily: "var(--font-space-mono)", fontSize: 12, whiteSpace: 'nowrap' }}>
                         {loading ? '…' : `${filtered.length.toLocaleString('nl')} advocaten`}
                     </span>
+                    <button onClick={() => setPhotoOnly(p => !p)}
+                        style={{
+                            padding: '5px 14px', borderRadius: 100, fontSize: 11,
+                            fontFamily: "var(--font-space-mono)", cursor: 'pointer', whiteSpace: 'nowrap',
+                            background: photoOnly ? '#22c55e' : 'rgba(255,255,255,0.07)',
+                            color: photoOnly ? 'white' : 'rgba(232,228,221,0.6)',
+                            border: 'none', transition: 'all 0.15s', display: 'flex', alignItems: 'center', gap: 5,
+                        }}>
+                        📷 Met foto
+                    </button>
                 </div>
 
                 {/* Filter chips */}
