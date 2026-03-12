@@ -7,6 +7,7 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 export type Lawyer = {
     id: string;
+    slug: string;
     name: string;
     bezoekadres: string | null;
     rechtsgebieden: string | null;

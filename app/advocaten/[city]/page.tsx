@@ -1,5 +1,5 @@
 import { supabase, type Lawyer } from '@/lib/supabase';
-import { slugify, extractCity, parseFields, getInitials, getAvatarStyle } from '@/lib/utils';
+import { extractCity, parseFields, getInitials, getAvatarStyle } from '@/lib/utils';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -65,7 +65,7 @@ async function getLawyersByCity(citySlug: string): Promise<{ lawyers: Lawyer[]; 
     // Fetch a page of lawyers for display
     const { data, error } = await supabase
         .from('advocaten')
-        .select('id,name,bezoekadres,rechtsgebieden,telefoon,email,website,arrondissement,profile_url,foto_url,bio_text,extra_specializations,lawyer_type')
+        .select('id,slug,name,bezoekadres,rechtsgebieden,telefoon,email,website,arrondissement,profile_url,foto_url,bio_text,extra_specializations,lawyer_type')
         .ilike('bezoekadres', `%${searchTerm}%`)
         .order('name', { ascending: true })
         .limit(48);
@@ -163,7 +163,7 @@ export default async function CityPage({
             item: {
                 '@type': 'LegalService',
                 name: l.name,
-                url: `https://www.advocaatvinder.nl/advocaat/${slugify(l.name || 'advocaat', extractCity(l.bezoekadres))}`,
+                url: `https://www.advocaatvinder.nl/advocaat/${l.slug}`,
                 address: {
                     '@type': 'PostalAddress',
                     addressLocality: name,
@@ -261,7 +261,6 @@ export default async function CityPage({
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: 16 }}>
                         {lawyers.map(l => {
                             const lawyerCity = extractCity(l.bezoekadres) || l.arrondissement || '';
-                            const slug = slugify(l.name || 'advocaat', lawyerCity);
                             const fields = parseFields(l.rechtsgebieden);
                             const { bg: avatarBg, text: avatarText } = getAvatarStyle(l.name || '');
                             const initials = getInitials(l.name || '');
@@ -292,7 +291,7 @@ export default async function CityPage({
                                             </div>
                                         )}
                                         <div style={{ flex: 1, minWidth: 0 }}>
-                                            <Link href={`/advocaat/${slug}`} style={{ textDecoration: 'none' }}>
+                                            <Link href={`/advocaat/${l.slug}`} style={{ textDecoration: 'none' }}>
                                                 <h3 style={{ margin: 0, fontSize: 15, fontWeight: 700, color: '#111111', lineHeight: 1.25, letterSpacing: '-0.01em' }}>
                                                     {l.name}
                                                 </h3>
@@ -324,7 +323,7 @@ export default async function CityPage({
                                     </div>
                                     <div style={{ flex: 1 }} />
                                     <div style={{ padding: '12px 16px 16px', display: 'flex', gap: 8 }}>
-                                        <Link href={`/advocaat/${slug}`} style={{
+                                        <Link href={`/advocaat/${l.slug}`} style={{
                                             flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5,
                                             background: '#F5F3EE', color: '#111111', borderRadius: 12, padding: '9px 14px',
                                             textDecoration: 'none', fontFamily: "var(--font-space-mono)", fontSize: 11, fontWeight: 700,

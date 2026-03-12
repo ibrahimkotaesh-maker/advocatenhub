@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import Link from 'next/link';
-import { slugify, extractCity, cleanWebsite, shortDomain, parseFields, getInitials, getAvatarStyle } from '@/lib/utils';
+import { extractCity, cleanWebsite, shortDomain, parseFields, getInitials, getAvatarStyle } from '@/lib/utils';
 
 const supabase = createClient(
     'https://wxdwpnuxxcpsfgjfmxax.supabase.co',
@@ -17,7 +17,7 @@ const TOP_FIELDS = [
 ];
 
 type Lawyer = {
-    id: string; name: string; bezoekadres: string | null;
+    id: string; slug: string; name: string; bezoekadres: string | null;
     rechtsgebieden: string | null; telefoon: string | null;
     email: string | null; website: string | null;
     arrondissement: string | null; profile_url: string | null;
@@ -69,7 +69,7 @@ export default function DirectoryClient() {
             while (true) {
                 const { data, error } = await supabase
                     .from('advocaten')
-                    .select('id,name,bezoekadres,rechtsgebieden,telefoon,email,website,arrondissement,profile_url,foto_url')
+                    .select('id,slug,name,bezoekadres,rechtsgebieden,telefoon,email,website,arrondissement,profile_url,foto_url')
                     .range(from, from + 999);
                 if (error || !data || data.length === 0) break;
                 all = [...all, ...data];
@@ -222,7 +222,7 @@ export default function DirectoryClient() {
 
 function LawyerCard({ lawyer }: { lawyer: Lawyer }) {
     const city = lawyer._city || lawyer.arrondissement || '';
-    const slug = slugify(lawyer.name || 'advocaat', city);
+    const slug = lawyer.slug;
     const fields = lawyer._fields || [];
     const field1 = fields[0] || null;
     const field1Label = field1 && field1.length > 28 ? field1.slice(0, 26) + '…' : field1;

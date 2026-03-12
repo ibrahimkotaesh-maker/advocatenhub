@@ -1,6 +1,5 @@
 import { MetadataRoute } from 'next';
 import { supabase } from '@/lib/supabase';
-import { slugify, extractCity } from '@/lib/utils';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 86400; // Re-generate daily
@@ -57,12 +56,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ];
 
     // Dynamic lawyer pages — fetch all IDs + names
-    let all: { id: string; name: string; bezoekadres: string | null }[] = [];
+    let all: { id: string; name: string; bezoekadres: string | null; slug: string }[] = [];
     let from = 0;
     while (true) {
         const { data, error } = await supabase
             .from('advocaten')
-            .select('id,name,bezoekadres')
+            .select('id,name,bezoekadres,slug')
             .range(from, from + 999);
         if (error || !data || data.length === 0) break;
         all = [...all, ...data];
@@ -71,7 +70,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
 
     const lawyerUrls: MetadataRoute.Sitemap = all.map(l => ({
-        url: `${baseUrl}/advocaat/${slugify(l.name || 'advocaat', extractCity(l.bezoekadres))}`,
+        url: `${baseUrl}/advocaat/${l.slug}`,
         changeFrequency: 'monthly' as const,
         priority: 0.7,
     }));
