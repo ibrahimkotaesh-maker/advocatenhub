@@ -37,7 +37,7 @@ const homepageJsonLd = [
 const CITY_MAP: Record<string, string> = {
   'amsterdam': 'AMSTERDAM',
   'rotterdam': 'ROTTERDAM',
-  'den-haag': 'DEN HAAG',
+  'den-haag': "'S-GRAVENHAGE",
   'utrecht': 'UTRECHT',
   'eindhoven': 'EINDHOVEN',
   'groningen': 'GRONINGEN',
@@ -50,7 +50,9 @@ const CITY_MAP: Record<string, string> = {
 };
 
 // Pretty name from slug
+const DISPLAY_OVERRIDE: Record<string, string> = { 'den-haag': 'Den Haag' };
 function displayName(slug: string): string {
+  if (DISPLAY_OVERRIDE[slug]) return DISPLAY_OVERRIDE[slug];
   const upper = CITY_MAP[slug] || slug.toUpperCase();
   return upper.split(/[\s-]+/).map(w => w.charAt(0) + w.slice(1).toLowerCase()).join(' ');
 }
@@ -101,14 +103,33 @@ async function getHomeData() {
 
   // Shuffle and take 8
   const shuffled = validPhotos.sort(() => Math.random() - 0.5).slice(0, 8);
+  // Known cities for matching
+  const KNOWN_CITIES = ['Amsterdam','Rotterdam','Den Haag','Utrecht','Eindhoven','Groningen','Tilburg','Breda','Arnhem','Maastricht','Haarlem','Nijmegen','Leiden','Almere','Apeldoorn','Zwolle','Amersfoort','Dordrecht','Delft','Leeuwarden','Deventer','Enschede','Hilversum','Alkmaar','Middelburg','Roermond','Gouda','Zoetermeer','Vlissingen','Venlo',"'s-Gravenhage","'s-Hertogenbosch","Rijswijk"];
+
   const featuredLawyers = shuffled.map(l => {
     // Extract city from bezoekadres
     const addr = l.bezoekadres || '';
-    const parts = addr.split('\n').pop()?.trim() || '';
-    const cityMatch = parts.replace(/^\d{4}\s*[A-Z]{0,2}\s*/, '').trim();
-    const city = cityMatch
-      ? cityMatch.split(/[\s-]+/).map((w: string) => w.charAt(0) + w.slice(1).toLowerCase()).join(' ')
-      : '';
+    let city = '';
+
+    // Strategy 1: Match postal code pattern "1234 AB CityName"
+    const postalMatch = addr.match(/\d{4}\s*[A-Za-z]{2}\s+([A-Za-z][A-Za-z\s'\-]+)/i);
+    if (postalMatch) {
+      city = postalMatch[1].trim();
+    }
+
+    // Strategy 2: If no postal code match, try matching known cities
+    if (!city) {
+      const addrUpper = addr.toUpperCase();
+      for (const c of KNOWN_CITIES) {
+        if (addrUpper.includes(c.toUpperCase())) { city = c; break; }
+      }
+    }
+
+    // Capitalize nicely and strip 'Nederland'
+    if (city) {
+      city = city.replace(/\bNederland\b/gi, '').trim();
+      city = city.split(/[\s]+/).map((w: string) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+    }
 
     // Parse rechtsgebieden
     const fields = (l.rechtsgebieden || '')

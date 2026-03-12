@@ -94,10 +94,17 @@ export default function HomeClient({ cities, totalLawyers, featuredLawyers }: Ho
   const [searchName, setSearchName] = useState('');
   const [searchCity, setSearchCity] = useState('');
   const [wordIndex, setWordIndex] = useState(0);
+  const [wordVisible, setWordVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const timer = setInterval(() => setWordIndex(i => (i + 1) % ROTATING_WORDS.length), 3000);
+    const timer = setInterval(() => {
+      setWordVisible(false);
+      setTimeout(() => {
+        setWordIndex(i => (i + 1) % ROTATING_WORDS.length);
+        setWordVisible(true);
+      }, 300);
+    }, 3000);
     return () => clearInterval(timer);
   }, []);
 
@@ -163,16 +170,22 @@ export default function HomeClient({ cities, totalLawyers, featuredLawyers }: Ho
         <h1 style={{ margin: '24px 0 0', fontSize: 'clamp(36px, 6vw, 72px)', fontWeight: 800, color: C.heroText, lineHeight: 1.05, letterSpacing: '-0.04em' }}>
           Vind de juiste
         </h1>
-        <h1 style={{
+        <div style={{
           margin: '0 0 24px', fontSize: 'clamp(36px, 6vw, 72px)',
-          fontWeight: 400, lineHeight: 1.05, letterSpacing: '-0.04em',
+          fontWeight: 400, lineHeight: 1.2, letterSpacing: '-0.04em',
           fontFamily: "var(--font-dm-serif)", fontStyle: 'italic',
-          position: 'relative', overflow: 'hidden', height: 'clamp(44px, 7.5vw, 88px)',
+          height: 'clamp(48px, 8vw, 96px)',
         }}>
-          <span key={wordIndex} className="rotating-word" style={{ color: C.accent }}>
+          <span style={{
+            display: 'block',
+            color: C.accent,
+            opacity: wordVisible ? 1 : 0,
+            transform: wordVisible ? 'translateY(0)' : 'translateY(16px)',
+            transition: 'opacity 0.4s ease, transform 0.4s ease',
+          }}>
             {ROTATING_WORDS[wordIndex]}.
           </span>
-        </h1>
+        </div>
 
         <p style={{ margin: '0 0 36px', fontSize: 17, color: C.textSoft, maxWidth: 520, lineHeight: 1.6 }}>
           De grootste onafhankelijke gids van Nederlandse advocaten. Zoek gratis op naam, stad of rechtsgebied.
