@@ -43,6 +43,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.85,
     }));
 
+    // City + Specialty combo pages (e.g. /advocaten/amsterdam/familierecht)
+    const comboUrls: MetadataRoute.Sitemap = [];
+    for (const city of CITY_SLUGS) {
+        for (const spec of SPECIALTY_SLUGS) {
+            comboUrls.push({
+                url: `${baseUrl}/advocaten/${city}/${spec}`,
+                lastModified: new Date(),
+                changeFrequency: 'weekly' as const,
+                priority: 0.8,
+            });
+        }
+    }
+
     // Blog article pages — Static + Database
     const STATIC_BLOG_SLUGS = [
         'wat-kost-een-advocaat', 'gesubsidieerde-rechtsbijstand',
@@ -91,5 +104,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.7,
     }));
 
-    return [...static_pages, ...cityUrls, ...specialtyUrls, ...blogUrls, ...lawyerUrls];
+    return [...static_pages, ...cityUrls, ...specialtyUrls, ...comboUrls, ...blogUrls, ...lawyerUrls];
 }
