@@ -248,7 +248,7 @@ export default function HomeClient({ cities, totalLawyers, featuredLawyers }: Ho
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 24, flexWrap: 'wrap', gap: 8 }}>
             <div>
               <h2 style={{ margin: '0 0 4px', fontSize: 22, fontWeight: 700, color: C.text, letterSpacing: '-0.02em' }}>Uitgelichte advocaten</h2>
-              <p style={{ margin: 0, fontSize: 13, color: C.textMuted, fontFamily: "var(--font-space-mono)" }}>Recent toegevoegd met profielfoto</p>
+              <p style={{ margin: 0, fontSize: 13, color: C.textMuted, fontFamily: "var(--font-space-mono)" }}>Geregistreerd bij de NOvA</p>
             </div>
             <Link href="/advocaten" style={{ fontSize: 13, color: C.accent, textDecoration: 'none', fontWeight: 600, fontFamily: "var(--font-space-mono)" }}>
               Alle advocaten →

@@ -82,27 +82,15 @@ async function getHomeData() {
   // Sort by count descending
   cityCounts.sort((a, b) => b.count - a.count);
 
-  // 3. Featured lawyers (those with photos, randomly sampled)
+  // 3. Featured lawyers (random sample, no photo filter)
   const { data: featured } = await supabase
     .from('advocaten')
-    .select('slug,name,bezoekadres,rechtsgebieden,foto_url')
-    .not('foto_url', 'is', null)
-    .not('foto_url', 'eq', '')
-    .ilike('foto_url', 'https://%')
+    .select('slug,name,bezoekadres,rechtsgebieden')
+    .not('rechtsgebieden', 'is', null)
     .limit(100);
 
-  // Filter to real photos and pick 8 random ones
-  const validPhotos = (featured || [])
-    .filter(l => {
-      const url = (l.foto_url || '').toLowerCase();
-      const junk = ['cookie','logo','icon','favicon','banner','placeholder','default','.svg','.gif','template','shutterstock'];
-      if (junk.some(j => url.includes(j))) return false;
-      const ok = ['.jpg','.jpeg','.png','.webp','wixstatic.com','squarespace-cdn.com','googleusercontent.com'];
-      return ok.some(ext => url.includes(ext));
-    });
-
   // Shuffle and take 8
-  const shuffled = validPhotos.sort(() => Math.random() - 0.5).slice(0, 8);
+  const shuffled = (featured || []).sort(() => Math.random() - 0.5).slice(0, 8);
   // Known cities for matching
   const KNOWN_CITIES = ['Amsterdam','Rotterdam','Den Haag','Utrecht','Eindhoven','Groningen','Tilburg','Breda','Arnhem','Maastricht','Haarlem','Nijmegen','Leiden','Almere','Apeldoorn','Zwolle','Amersfoort','Dordrecht','Delft','Leeuwarden','Deventer','Enschede','Hilversum','Alkmaar','Middelburg','Roermond','Gouda','Zoetermeer','Vlissingen','Venlo',"'s-Gravenhage","'s-Hertogenbosch","Rijswijk"];
 
@@ -138,7 +126,7 @@ async function getHomeData() {
       .map((f: string) => f.trim())
       .filter(Boolean);
 
-    return { slug: l.slug, name: l.name, city, fields, foto_url: l.foto_url };
+    return { slug: l.slug, name: l.name, city, fields, foto_url: null };
   });
 
   return { totalLawyers, cities: cityCounts, featuredLawyers };
