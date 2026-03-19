@@ -9,8 +9,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Static pages
     const static_pages: MetadataRoute.Sitemap = [
-        { url: baseUrl, changeFrequency: 'weekly', priority: 1.0 },
-        { url: `${baseUrl}/advocaten`, changeFrequency: 'daily', priority: 0.9 },
+        { url: baseUrl, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },
+        { url: `${baseUrl}/advocaten`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.9 },
     ];
 
     // City landing pages
@@ -23,6 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ];
     const cityUrls: MetadataRoute.Sitemap = CITY_SLUGS.map(c => ({
         url: `${baseUrl}/advocaten/${c}`,
+        lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.85,
     }));
@@ -37,40 +38,55 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ];
     const specialtyUrls: MetadataRoute.Sitemap = SPECIALTY_SLUGS.map(s => ({
         url: `${baseUrl}/advocaten/rechtsgebied/${s}`,
+        lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.85,
     }));
 
-    // Blog article pages
-    const BLOG_SLUGS = [
+    // Blog article pages — Static + Database
+    const STATIC_BLOG_SLUGS = [
         'wat-kost-een-advocaat', 'gesubsidieerde-rechtsbijstand',
         'pro-deo-advocaat', 'no-cure-no-pay-advocaat', 'advocaat-kiezen-tips',
     ];
+
+    let dbBlogSlugs: string[] = [];
+    try {
+        const { data } = await supabase
+            .from('blog_articles')
+            .select('slug')
+            .order('published_at', { ascending: false });
+        if (data) dbBlogSlugs = data.map((a: any) => a.slug);
+    } catch { /* ignore */ }
+
+    const allBlogSlugs = [...new Set([...STATIC_BLOG_SLUGS, ...dbBlogSlugs])];
+
     const blogUrls: MetadataRoute.Sitemap = [
-        { url: `${baseUrl}/blog`, changeFrequency: 'weekly' as const, priority: 0.8 },
-        ...BLOG_SLUGS.map(s => ({
+        { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 },
+        ...allBlogSlugs.map(s => ({
             url: `${baseUrl}/blog/${s}`,
+            lastModified: new Date(),
             changeFrequency: 'monthly' as const,
             priority: 0.75,
         })),
     ];
 
-    // Dynamic lawyer pages — fetch all IDs + names
-    let all: { id: string; name: string; bezoekadres: string | null; slug: string }[] = [];
+    // Dynamic lawyer pages — fetch all slugs in batches
+    let allSlugs: string[] = [];
     let from = 0;
     while (true) {
         const { data, error } = await supabase
             .from('advocaten')
-            .select('id,name,bezoekadres,slug')
+            .select('slug')
             .range(from, from + 999);
         if (error || !data || data.length === 0) break;
-        all = [...all, ...data];
+        allSlugs = [...allSlugs, ...data.map((l: any) => l.slug)];
         if (data.length < 1000) break;
         from += 1000;
     }
 
-    const lawyerUrls: MetadataRoute.Sitemap = all.map(l => ({
-        url: `${baseUrl}/advocaat/${l.slug}`,
+    const lawyerUrls: MetadataRoute.Sitemap = allSlugs.map(slug => ({
+        url: `${baseUrl}/advocaat/${slug}`,
+        lastModified: new Date(),
         changeFrequency: 'monthly' as const,
         priority: 0.7,
     }));

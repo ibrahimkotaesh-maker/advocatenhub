@@ -366,17 +366,7 @@ export default async function SpecialtyPage({
                                     overflow: 'hidden', display: 'flex', flexDirection: 'column',
                                 }}>
                                     <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16, padding: '20px 20px 0' }}>
-                                        {l.foto_url ? (
-                                            <div style={{
-                                                width: 56, height: 56, borderRadius: 14, flexShrink: 0,
-                                                overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.12)',
-                                            }}>
-                                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                                <img src={l.foto_url} alt={l.name || 'Advocaat'}
-                                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                            </div>
-                                        ) : (
-                                            <div style={{
+                                        <div style={{
                                                 width: 56, height: 56, borderRadius: 14, flexShrink: 0,
                                                 background: avatarBg, display: 'flex', alignItems: 'center', justifyContent: 'center',
                                                 fontSize: 18, fontWeight: 700, color: avatarText,
@@ -384,7 +374,6 @@ export default async function SpecialtyPage({
                                             }}>
                                                 {initials}
                                             </div>
-                                        )}
                                         <div style={{ flex: 1, minWidth: 0 }}>
                                             <Link href={`/advocaat/${l.slug}`} style={{ textDecoration: 'none' }}>
                                                 <h3 style={{ margin: 0, fontSize: 15, fontWeight: 700, color: '#111111', lineHeight: 1.25, letterSpacing: '-0.01em' }}>

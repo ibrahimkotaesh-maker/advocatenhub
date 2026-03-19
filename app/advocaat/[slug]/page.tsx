@@ -147,18 +147,7 @@ export default async function LawyerPage({
 
                         <div style={{ padding: '32px 32px 28px', display: 'flex', gap: 24, alignItems: 'flex-start', flexWrap: 'wrap' }}>
                             {/* Avatar */}
-                            {lawyer.foto_url ? (
-                                <div style={{
-                                    width: 88, height: 88, borderRadius: 20, flexShrink: 0,
-                                    overflow: 'hidden',
-                                    boxShadow: `0 8px 24px rgba(0,0,0,0.15)`,
-                                }}>
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img src={lawyer.foto_url} alt={lawyer.name}
-                                        style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                </div>
-                            ) : (
-                                <div style={{
+                            <div style={{
                                     width: 88, height: 88, borderRadius: 20, flexShrink: 0,
                                     background: avatarBg, display: 'flex', alignItems: 'center', justifyContent: 'center',
                                     fontSize: 28, fontWeight: 700, color: avatarText,
@@ -166,7 +155,6 @@ export default async function LawyerPage({
                                 }}>
                                     {initials}
                                 </div>
-                            )}
 
                             {/* Info */}
                             <div style={{ flex: 1, minWidth: 200 }}>

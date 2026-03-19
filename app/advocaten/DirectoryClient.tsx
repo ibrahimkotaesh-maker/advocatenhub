@@ -56,7 +56,7 @@ export default function DirectoryClient() {
     const [searchText, setSearchText] = useState('');
     const [activeField, setActiveField] = useState('');
     const [activeCity, setActiveCity] = useState('');
-    const [photoOnly, setPhotoOnly] = useState(false);
+
     const [topCities, setTopCities] = useState<string[]>([]);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
@@ -110,12 +110,10 @@ export default function DirectoryClient() {
         if (activeCity) {
             res = res.filter(l => (l._city || '').toLowerCase() === activeCity.toLowerCase());
         }
-        if (photoOnly) {
-            res = res.filter(l => l._validPhoto);
-        }
+
         setFiltered(res);
         setPage(1);
-    }, [searchText, activeField, activeCity, photoOnly, allLawyers]);
+    }, [searchText, activeField, activeCity, allLawyers]);
 
     const toggleField = useCallback((f: string) => { setActiveField(p => p === f ? '' : f); }, []);
     const toggleCity = useCallback((c: string) => { setActiveCity(p => p === c ? '' : c); }, []);
@@ -145,16 +143,7 @@ export default function DirectoryClient() {
                     <span style={{ color: 'rgba(232,228,221,0.4)', fontFamily: "var(--font-space-mono)", fontSize: 12, whiteSpace: 'nowrap' }}>
                         {loading ? '…' : `${filtered.length.toLocaleString('nl')} advocaten`}
                     </span>
-                    <button onClick={() => setPhotoOnly(p => !p)}
-                        style={{
-                            padding: '5px 14px', borderRadius: 100, fontSize: 11,
-                            fontFamily: "var(--font-space-mono)", cursor: 'pointer', whiteSpace: 'nowrap',
-                            background: photoOnly ? '#22c55e' : 'rgba(255,255,255,0.07)',
-                            color: photoOnly ? 'white' : 'rgba(232,228,221,0.6)',
-                            border: 'none', transition: 'all 0.15s', display: 'flex', alignItems: 'center', gap: 5,
-                        }}>
-                        📷 Met foto
-                    </button>
+
                 </div>
 
                 {/* Filter chips */}
@@ -234,29 +223,15 @@ function LawyerCard({ lawyer }: { lawyer: Lawyer }) {
     return (
         <article style={{ background: 'white', borderRadius: 20, border: '1px solid rgba(17,17,17,0.07)', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16, padding: '20px 20px 0' }}>
-                {lawyer._validPhoto && lawyer.foto_url ? (
-                    <>
+                {website ? (
+                    <div style={{ width: 64, height: 64, borderRadius: 16, flexShrink: 0, background: '#fff', border: '1px solid rgba(17,17,17,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
                         <img
-                            src={lawyer.foto_url}
-                            alt={lawyer.name || ''}
-                            style={{ width: 64, height: 64, borderRadius: 16, flexShrink: 0, objectFit: 'cover', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
-                            onError={(e) => { const img = e.target as HTMLImageElement; img.style.display = 'none'; const sib = img.nextElementSibling as HTMLElement | null; if (sib) sib.style.display = 'flex'; }}
+                            src={`https://www.google.com/s2/favicons?domain=${shortDomain(website)}&sz=128`}
+                            alt=""
+                            style={{ width: 36, height: 36, objectFit: 'contain' }}
+                            onError={(e) => { const img = e.target as HTMLImageElement; img.style.display = 'none'; const p = img.parentElement as HTMLElement; p.style.background = avatarBg; p.style.fontSize = '22px'; p.style.fontWeight = '700'; p.style.color = avatarText; p.textContent = initials; }}
                         />
-                        <div style={{ width: 64, height: 64, borderRadius: 16, flexShrink: 0, background: avatarBg, display: 'none', alignItems: 'center', justifyContent: 'center', fontSize: 22, fontWeight: 700, color: avatarText, boxShadow: `0 4px 12px ${avatarBg}55` }}>
-                            {initials}
-                        </div>
-                    </>
-                ) : website ? (
-                    <>
-                        <div style={{ width: 64, height: 64, borderRadius: 16, flexShrink: 0, background: '#fff', border: '1px solid rgba(17,17,17,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
-                            <img
-                                src={`https://www.google.com/s2/favicons?domain=${shortDomain(website)}&sz=128`}
-                                alt=""
-                                style={{ width: 36, height: 36, objectFit: 'contain' }}
-                                onError={(e) => { const img = e.target as HTMLImageElement; img.style.display = 'none'; const p = img.parentElement as HTMLElement; p.style.background = avatarBg; p.style.fontSize = '22px'; p.style.fontWeight = '700'; p.style.color = avatarText; p.textContent = initials; }}
-                            />
-                        </div>
-                    </>
+                    </div>
                 ) : (
                     <div style={{ width: 64, height: 64, borderRadius: 16, flexShrink: 0, background: avatarBg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, fontWeight: 700, color: avatarText, boxShadow: `0 4px 12px ${avatarBg}55` }}>
                         {initials}

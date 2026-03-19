@@ -1,6 +1,8 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import { BLOG_ARTICLES } from '@/lib/blog-data';
+import { supabase } from '@/lib/supabase';
 
 export const metadata: Metadata = {
     title: 'Juridisch Blog — Advocaat Tips, Kosten & Rechtshulp | AdvocaatVinder',
@@ -12,9 +14,58 @@ const categoryColors: Record<string, string> = {
     Kosten: '#E63B2E',
     Rechtsbijstand: '#2563eb',
     Tips: '#16a34a',
+    Familierecht: '#9333ea',
+    Arbeidsrecht: '#d97706',
 };
 
-export default function BlogIndex() {
+type UnifiedArticle = {
+    slug: string;
+    title: string;
+    metaDescription: string;
+    category: string;
+    readingTime: string;
+    source: 'static' | 'db';
+};
+
+async function getDbArticles(): Promise<UnifiedArticle[]> {
+    try {
+        const { data, error } = await supabase
+            .from('blog_articles')
+            .select('slug, title, meta_description, category, reading_time')
+            .order('published_at', { ascending: false });
+
+        if (error || !data) return [];
+
+        return data.map((a: any) => ({
+            slug: a.slug,
+            title: a.title,
+            metaDescription: a.meta_description || '',
+            category: a.category || 'Juridisch',
+            readingTime: a.reading_time || '5 min',
+            source: 'db' as const,
+        }));
+    } catch {
+        return [];
+    }
+}
+
+export default async function BlogIndex() {
+    const dbArticles = await getDbArticles();
+
+    // Merge: static articles first, then DB articles (skip duplicates by slug)
+    const staticSlugs = new Set(BLOG_ARTICLES.map(a => a.slug));
+    const allArticles: UnifiedArticle[] = [
+        ...BLOG_ARTICLES.map(a => ({
+            slug: a.slug,
+            title: a.title,
+            metaDescription: a.metaDescription,
+            category: a.category,
+            readingTime: a.readingTime,
+            source: 'static' as const,
+        })),
+        ...dbArticles.filter(a => !staticSlugs.has(a.slug)),
+    ];
+
     const breadcrumbJsonLd = {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
@@ -51,7 +102,7 @@ export default function BlogIndex() {
                         margin: '0 0 12px', fontFamily: "var(--font-space-mono)", fontSize: 11,
                         color: 'rgba(232,228,221,0.35)', letterSpacing: '0.12em', textTransform: 'uppercase',
                     }}>
-                        Juridisch blog · {BLOG_ARTICLES.length} artikelen
+                        Juridisch blog · {allArticles.length} artikelen
                     </p>
                     <h1 style={{
                         margin: '0 0 8px', fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: 800,
@@ -67,51 +118,83 @@ export default function BlogIndex() {
                 {/* ── Articles Grid ── */}
                 <main style={{ maxWidth: 900, margin: '0 auto', padding: '40px 20px 80px' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-                        {BLOG_ARTICLES.map((article, i) => (
+                        {allArticles.map((article, i) => {
+                            const hasImage = article.source === 'db';
+                            const imagePath = `/images/blog/${article.slug}.png`;
+                            return (
                             <Link key={article.slug} href={`/blog/${article.slug}`} style={{ textDecoration: 'none' }}>
                                 <article style={{
                                     background: 'white', borderRadius: 24,
                                     border: '1px solid rgba(17,17,17,0.07)',
-                                    padding: '28px 32px', display: 'flex', gap: 24,
-                                    alignItems: 'flex-start', transition: 'all 0.2s',
+                                    display: 'flex', gap: 0, overflow: 'hidden',
+                                    alignItems: 'stretch', transition: 'all 0.2s',
                                     ...(i === 0 ? { borderLeft: '4px solid #E63B2E' } : {}),
                                 }}>
-                                    <div style={{
-                                        width: 48, height: 48, borderRadius: 14, flexShrink: 0,
-                                        background: '#111111', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                        fontSize: 18, fontWeight: 800, color: '#E8E4DD',
-                                        fontFamily: "var(--font-space-mono)",
-                                    }}>
-                                        {String(i + 1).padStart(2, '0')}
-                                    </div>
-                                    <div style={{ flex: 1, minWidth: 0 }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, flexWrap: 'wrap' }}>
-                                            <span style={{
-                                                fontSize: 10, fontFamily: "var(--font-space-mono)",
-                                                background: `${categoryColors[article.category] || '#E63B2E'}15`,
-                                                color: categoryColors[article.category] || '#E63B2E',
-                                                padding: '3px 10px', borderRadius: 100, fontWeight: 700,
-                                                border: `1px solid ${categoryColors[article.category] || '#E63B2E'}30`,
-                                            }}>
-                                                {article.category}
-                                            </span>
-                                            <span style={{ fontSize: 11, fontFamily: "var(--font-space-mono)", color: 'rgba(17,17,17,0.35)' }}>
-                                                {article.readingTime}
-                                            </span>
+                                    {hasImage && (
+                                        <div style={{
+                                            width: 200, minHeight: 140, flexShrink: 0,
+                                            position: 'relative', overflow: 'hidden',
+                                        }}>
+                                            <Image
+                                                src={imagePath}
+                                                alt={article.title}
+                                                fill
+                                                style={{ objectFit: 'cover' }}
+                                                sizes="200px"
+                                            />
                                         </div>
-                                        <h2 style={{ margin: '0 0 8px', fontSize: 18, fontWeight: 700, color: '#111111', lineHeight: 1.3, letterSpacing: '-0.02em' }}>
-                                            {article.title}
-                                        </h2>
-                                        <p style={{ margin: 0, fontSize: 14, color: 'rgba(17,17,17,0.5)', lineHeight: 1.6 }}>
-                                            {article.metaDescription.slice(0, 120)}…
-                                        </p>
+                                    )}
+                                    <div style={{ flex: 1, minWidth: 0, padding: '24px 28px', display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+                                        {!hasImage && (
+                                            <div style={{
+                                                width: 48, height: 48, borderRadius: 14, flexShrink: 0,
+                                                background: '#111111',
+                                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                                fontSize: 18, fontWeight: 800, color: '#E8E4DD',
+                                                fontFamily: "var(--font-space-mono)",
+                                            }}>
+                                                {String(i + 1).padStart(2, '0')}
+                                            </div>
+                                        )}
+                                        <div style={{ flex: 1, minWidth: 0 }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, flexWrap: 'wrap' }}>
+                                                <span style={{
+                                                    fontSize: 10, fontFamily: "var(--font-space-mono)",
+                                                    background: `${categoryColors[article.category] || '#E63B2E'}15`,
+                                                    color: categoryColors[article.category] || '#E63B2E',
+                                                    padding: '3px 10px', borderRadius: 100, fontWeight: 700,
+                                                    border: `1px solid ${categoryColors[article.category] || '#E63B2E'}30`,
+                                                }}>
+                                                    {article.category}
+                                                </span>
+                                                <span style={{ fontSize: 11, fontFamily: "var(--font-space-mono)", color: 'rgba(17,17,17,0.35)' }}>
+                                                    {article.readingTime}
+                                                </span>
+                                                {article.source === 'db' && (
+                                                    <span style={{
+                                                        fontSize: 9, fontFamily: "var(--font-space-mono)",
+                                                        background: 'rgba(147,51,234,0.1)', color: '#9333ea',
+                                                        padding: '2px 8px', borderRadius: 100, fontWeight: 700,
+                                                    }}>
+                                                        NIEUW
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <h2 style={{ margin: '0 0 8px', fontSize: 18, fontWeight: 700, color: '#111111', lineHeight: 1.3, letterSpacing: '-0.02em' }}>
+                                                {article.title}
+                                            </h2>
+                                            <p style={{ margin: 0, fontSize: 14, color: 'rgba(17,17,17,0.5)', lineHeight: 1.6 }}>
+                                                {article.metaDescription.slice(0, 120)}…
+                                            </p>
+                                        </div>
+                                        <svg width="20" height="20" fill="none" stroke="rgba(17,17,17,0.2)" strokeWidth="2" viewBox="0 0 24 24" style={{ flexShrink: 0, marginTop: 4 }}>
+                                            <path d="M9 18l6-6-6-6" />
+                                        </svg>
                                     </div>
-                                    <svg width="20" height="20" fill="none" stroke="rgba(17,17,17,0.2)" strokeWidth="2" viewBox="0 0 24 24" style={{ flexShrink: 0, marginTop: 4 }}>
-                                        <path d="M9 18l6-6-6-6" />
-                                    </svg>
                                 </article>
                             </Link>
-                        ))}
+                            );
+                        })}
                     </div>
 
                     {/* ── CTA ── */}

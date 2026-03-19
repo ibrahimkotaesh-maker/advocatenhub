@@ -261,14 +261,9 @@ export default function HomeClient({ cities, totalLawyers, featuredLawyers }: Ho
               const initials = getInitials(l.name);
               return (
                 <Link key={l.slug} href={`/advocaat/${l.slug}`} className="featured-card-light">
-                  {hasPhoto ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={l.foto_url!} alt={l.name} style={{ width: 52, height: 52, borderRadius: 14, objectFit: 'cover', flexShrink: 0 }} />
-                  ) : (
-                    <div style={{ width: 52, height: 52, borderRadius: 14, flexShrink: 0, background: bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, fontWeight: 700, color: 'white' }}>
+                  <div style={{ width: 52, height: 52, borderRadius: 14, flexShrink: 0, background: bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, fontWeight: 700, color: 'white' }}>
                       {initials}
                     </div>
-                  )}
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontSize: 14, fontWeight: 700, color: C.text, lineHeight: 1.3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{l.name}</div>
                     <div style={{ fontSize: 11, color: C.textMuted, fontFamily: "var(--font-space-mono)", marginTop: 2, display: 'flex', alignItems: 'center', gap: 4 }}>
