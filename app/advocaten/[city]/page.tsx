@@ -102,11 +102,11 @@ export async function generateMetadata({
     if (total === 0) return { title: `Advocaat ${name} — Niet gevonden` };
 
     return {
-        title: `Advocaat ${name} — ${total}+ Advocaten in ${name}`,
-        description: `Vind een advocaat in ${name}. Doorzoek ${total}+ NOvA-geregistreerde advocaten in ${name}. Filter op rechtsgebied, bekijk contactgegevens en specialisaties. AdvocaatVinder — de grootste gids.`,
+        title: `Advocaat ${name} — Vind ${total}+ Advocaten ✓ Gratis Zoeken`,
+        description: `Zoek een advocaat in ${name}? Vergelijk ${total}+ NOvA-geregistreerde advocaten in ${name}. Filter op rechtsgebied, bekijk contactgegevens en specialisaties. AdvocaatVinder — de grootste advocatengids van Nederland.`,
         openGraph: {
-            title: `Advocaat ${name} — ${total}+ NOvA-advocaten`,
-            description: `Zoek advocaten in ${name}. ${total}+ advocaten met contactgegevens, specialisaties en meer.`,
+            title: `Advocaat ${name} — ${total}+ NOvA-geregistreerde Advocaten`,
+            description: `Vind de beste advocaat in ${name}. ${total}+ advocaten met contactgegevens, specialisaties en meer.`,
         },
         alternates: {
             canonical: `https://www.advocaatvinder.nl/advocaten/${city}`,
@@ -173,10 +173,50 @@ export default async function CityPage({
         })),
     };
 
+    const faqJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: [
+            {
+                '@type': 'Question',
+                name: `Hoeveel advocaten zijn er in ${name}?`,
+                acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: `Er zijn ${total}+ NOvA-geregistreerde advocaten in ${name}. U kunt op AdvocaatVinder alle advocaten doorzoeken en filteren op rechtsgebied en specialisatie.`,
+                },
+            },
+            {
+                '@type': 'Question',
+                name: `Wat kost een advocaat in ${name}?`,
+                acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: `De kosten van een advocaat in ${name} variëren van €150 tot €300 per uur, afhankelijk van het rechtsgebied en de ervaring. Bij een laag inkomen kunt u in aanmerking komen voor gesubsidieerde rechtsbijstand (pro deo).`,
+                },
+            },
+            {
+                '@type': 'Question',
+                name: `Hoe vind ik een goede advocaat in ${name}?`,
+                acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: `Op AdvocaatVinder kunt u advocaten in ${name} zoeken op rechtsgebied en specialisatie. Alle advocaten zijn NOvA-geregistreerd. Tips: kies een specialist in uw rechtsgebied, vergelijk meerdere advocaten, en maak gebruik van gratis intakegesprekken.`,
+                },
+            },
+            {
+                '@type': 'Question',
+                name: `Welke rechtsgebieden zijn het meest vertegenwoordigd in ${name}?`,
+                acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: `De meest vertegenwoordigde rechtsgebieden in ${name} zijn onder andere: ${topSpecialties.slice(0, 5).map(s => s.field).join(', ')}. U kunt filteren op elk rechtsgebied om de juiste specialist te vinden.`,
+                },
+            },
+        ],
+    };
+
     return (
         <>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
             <div style={{ minHeight: '100vh', background: '#F5F3EE', fontFamily: "var(--font-space-grotesk)" }}>
                 {/* ── Top Bar ── */}
