@@ -89,6 +89,57 @@ function getTopSpecialties(lawyers: Lawyer[]): { field: string; count: number }[
         .map(([field, count]) => ({ field, count }));
 }
 
+// ─── Map a field name to a specialty slug ─────────────────────────────────────
+const FIELD_TO_SLUG: Record<string, string> = {
+    'Personen- en familierecht': 'familierecht',
+    'Familierecht': 'familierecht',
+    'Jeugdrecht': 'familierecht',
+    'Arbeidsrecht': 'arbeidsrecht',
+    'Ambtenarenrecht': 'arbeidsrecht',
+    'Strafrecht': 'strafrecht',
+    'Jeugdstrafrecht': 'strafrecht',
+    'Ondernemingsrecht': 'ondernemingsrecht',
+    'Vennootschapsrecht': 'ondernemingsrecht',
+    'Huurrecht': 'huurrecht',
+    'Bestuursrecht': 'bestuursrecht',
+    'Omgevingsrecht': 'bestuursrecht',
+    'Vastgoed': 'vastgoedrecht',
+    'Bouwrecht': 'vastgoedrecht',
+    'Vastgoedrecht': 'vastgoedrecht',
+    'Erfrecht': 'erfrecht',
+    'Intellectueel eigendom': 'intellectueel-eigendom',
+    'IE-recht': 'intellectueel-eigendom',
+    'Merkenrecht': 'intellectueel-eigendom',
+    'Auteursrecht': 'intellectueel-eigendom',
+    'Immigratierecht': 'immigratierecht',
+    'Vreemdelingenrecht': 'immigratierecht',
+    'Asiel- en vluchtelingenrecht': 'immigratierecht',
+    'Letselschade': 'letselschaderecht',
+    'Aansprakelijkheidsrecht': 'letselschaderecht',
+    'Letselschaderecht': 'letselschaderecht',
+    'Verbintenissenrecht': 'verbintenissenrecht',
+    'Contractenrecht': 'verbintenissenrecht',
+    'Algemeen civiel recht': 'verbintenissenrecht',
+    'Insolventierecht': 'insolventierecht',
+    'Faillissementsrecht': 'insolventierecht',
+    'Mededingingsrecht': 'mededingingsrecht',
+    'Europees recht': 'mededingingsrecht',
+    'Belastingrecht': 'belastingrecht',
+    'Fiscaal recht': 'belastingrecht',
+    'Verzekeringsrecht': 'verzekeringsrecht',
+    'Sociaal zekerheidsrecht': 'sociaal-zekerheidsrecht',
+    'Burenrecht': 'burenrecht',
+    'Mediarecht': 'mediarecht',
+    'IT-recht': 'mediarecht',
+    'Telecommunicatierecht': 'mediarecht',
+    'Gezondheidsrecht': 'gezondheidsrecht',
+    'Medisch tuchtrecht': 'gezondheidsrecht',
+};
+
+function fieldToSpecialtySlug(field: string): string | null {
+    return FIELD_TO_SLUG[field] || null;
+}
+
 // ─── Dynamic Metadata ────────────────────────────────────────────────────────
 export async function generateMetadata({
     params,
@@ -268,24 +319,45 @@ export default async function CityPage({
 
                 <main style={{ maxWidth: 1280, margin: '0 auto', padding: '32px 20px 80px' }}>
 
-                    {/* ── Top Specialties ── */}
+                    {/* ── Top Specialties (linked to city+specialty pages) ── */}
                     {topSpecialties.length > 0 && (
                         <section style={{ marginBottom: 40 }}>
                             <h2 style={{ margin: '0 0 16px', fontSize: 18, fontWeight: 700, letterSpacing: '-0.02em', color: '#111111' }}>
                                 Rechtsgebieden in {name}
                             </h2>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                                {topSpecialties.map(({ field, count }) => (
-                                    <span key={field} style={{
-                                        background: 'white', border: '1px solid rgba(17,17,17,0.1)',
-                                        borderRadius: 100, padding: '8px 16px', fontSize: 13,
-                                        fontFamily: "var(--font-space-mono)", color: 'rgba(17,17,17,0.7)',
-                                        display: 'flex', alignItems: 'center', gap: 8,
-                                    }}>
-                                        {field}
-                                        <span style={{ fontSize: 11, color: 'rgba(17,17,17,0.35)', fontWeight: 700 }}>{count}</span>
-                                    </span>
-                                ))}
+                                {topSpecialties.map(({ field, count }) => {
+                                    const specSlug = fieldToSpecialtySlug(field);
+                                    const inner = (
+                                        <>
+                                            {field}
+                                            <span style={{ fontSize: 11, color: 'rgba(17,17,17,0.35)', fontWeight: 700 }}>{count}</span>
+                                        </>
+                                    );
+                                    if (specSlug) {
+                                        return (
+                                            <Link key={field} href={`/advocaten/${city}/${specSlug}`} style={{
+                                                background: 'white', border: '1px solid rgba(17,17,17,0.1)',
+                                                borderRadius: 100, padding: '8px 16px', fontSize: 13,
+                                                fontFamily: "var(--font-space-mono)", color: 'rgba(17,17,17,0.7)',
+                                                display: 'flex', alignItems: 'center', gap: 8,
+                                                textDecoration: 'none', transition: 'all 0.15s',
+                                            }}>
+                                                {inner}
+                                            </Link>
+                                        );
+                                    }
+                                    return (
+                                        <span key={field} style={{
+                                            background: 'white', border: '1px solid rgba(17,17,17,0.1)',
+                                            borderRadius: 100, padding: '8px 16px', fontSize: 13,
+                                            fontFamily: "var(--font-space-mono)", color: 'rgba(17,17,17,0.7)',
+                                            display: 'flex', alignItems: 'center', gap: 8,
+                                        }}>
+                                            {inner}
+                                        </span>
+                                    );
+                                })}
                             </div>
                         </section>
                     )}
