@@ -398,6 +398,69 @@ export default async function ArticlePage({
                         </div>
                     </section>
 
+                    {/* ── Related Specialty & City Pages ── */}
+                    {(() => {
+                        const categoryToSpecialty: Record<string, { slug: string; label: string }> = {
+                            'familierecht': { slug: 'familierecht', label: 'Familierecht' },
+                            'arbeidsrecht': { slug: 'arbeidsrecht', label: 'Arbeidsrecht' },
+                            'strafrecht': { slug: 'strafrecht', label: 'Strafrecht' },
+                            'huurrecht': { slug: 'huurrecht', label: 'Huurrecht' },
+                            'ondernemingsrecht': { slug: 'ondernemingsrecht', label: 'Ondernemingsrecht' },
+                            'immigratierecht': { slug: 'immigratierecht', label: 'Immigratierecht' },
+                            'erfrecht': { slug: 'erfrecht', label: 'Erfrecht' },
+                            'bestuursrecht': { slug: 'bestuursrecht', label: 'Bestuursrecht' },
+                            'letselschade': { slug: 'letselschaderecht', label: 'Letselschaderecht' },
+                            'vastgoed': { slug: 'vastgoedrecht', label: 'Vastgoedrecht' },
+                            'intellectueel eigendom': { slug: 'intellectueel-eigendomsrecht', label: 'Intellectueel Eigendomsrecht' },
+                            'consumentenrecht': { slug: 'consumentenrecht', label: 'Consumentenrecht' },
+                        };
+                        const topCities = [
+                            { slug: 'amsterdam', label: 'Amsterdam' },
+                            { slug: 'rotterdam', label: 'Rotterdam' },
+                            { slug: 'den-haag', label: 'Den Haag' },
+                            { slug: 'utrecht', label: 'Utrecht' },
+                            { slug: 'eindhoven', label: 'Eindhoven' },
+                        ];
+                        const spec = categoryToSpecialty[category?.toLowerCase()];
+                        if (!spec) return null;
+                        return (
+                            <section style={{ marginTop: 32 }}>
+                                <h2 style={{ margin: '0 0 16px', fontSize: 16, fontWeight: 700, color: 'rgba(17,17,17,0.6)' }}>
+                                    Gerelateerde pagina&apos;s
+                                </h2>
+                                {/* Specialty page link */}
+                                <Link href={`/advocaten/rechtsgebied/${spec.slug}`} style={{
+                                    display: 'block', background: '#111111', borderRadius: 16,
+                                    padding: '16px 20px', textDecoration: 'none', marginBottom: 12,
+                                }}>
+                                    <p style={{ margin: '0 0 4px', fontSize: 15, fontWeight: 600, color: '#E8E4DD' }}>
+                                        {spec.label} advocaat nodig?
+                                    </p>
+                                    <span style={{ fontSize: 12, fontFamily: "var(--font-space-mono)", color: 'rgba(232,228,221,0.4)' }}>
+                                        Bekijk alle {spec.label.toLowerCase()} advocaten in Nederland →
+                                    </span>
+                                </Link>
+                                {/* City+specialty combo links */}
+                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 8 }}>
+                                    {topCities.map(city => (
+                                        <Link key={city.slug} href={`/advocaten/${city.slug}/${spec.slug}`} style={{
+                                            display: 'block', background: 'white', borderRadius: 12,
+                                            border: '1px solid rgba(17,17,17,0.07)', padding: '12px 16px',
+                                            textDecoration: 'none',
+                                        }}>
+                                            <p style={{ margin: 0, fontSize: 13, fontWeight: 600, color: '#111111' }}>
+                                                {spec.label} {city.label}
+                                            </p>
+                                            <span style={{ fontSize: 11, fontFamily: "var(--font-space-mono)", color: 'rgba(17,17,17,0.35)' }}>
+                                                Vind advocaten →
+                                            </span>
+                                        </Link>
+                                    ))}
+                                </div>
+                            </section>
+                        );
+                    })()}
+
                     {/* ── More Articles ── */}
                     {otherArticles.length > 0 && (
                         <section style={{ marginTop: 40 }}>
