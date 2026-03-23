@@ -251,10 +251,46 @@ export default async function ArticlePage({
         ],
     };
 
+    // ── FAQ Schema (extract Q&A pairs from FAQ section) ──────────────────
+    const faqSection = sections?.find(s => s.heading.toLowerCase().includes('veelgestelde vragen'));
+    let faqJsonLd = null;
+    if (faqSection) {
+        const faqPairs: { question: string; answer: string }[] = [];
+        const faqLines = faqSection.content.split('\n\n');
+        let currentQ = '';
+        for (const line of faqLines) {
+            const qMatch = line.match(/^\*\*(.+?)\*\*$/);
+            if (qMatch) {
+                if (currentQ && faqPairs.length > 0) {
+                    // previous Q already has an answer
+                }
+                currentQ = qMatch[1];
+            } else if (currentQ) {
+                faqPairs.push({ question: currentQ, answer: line.trim() });
+                currentQ = '';
+            }
+        }
+        if (faqPairs.length > 0) {
+            faqJsonLd = {
+                '@context': 'https://schema.org',
+                '@type': 'FAQPage',
+                mainEntity: faqPairs.map(faq => ({
+                    '@type': 'Question',
+                    name: faq.question,
+                    acceptedAnswer: {
+                        '@type': 'Answer',
+                        text: faq.answer,
+                    },
+                })),
+            };
+        }
+    }
+
     return (
         <>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+            {faqJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />}
 
             <div style={{ minHeight: '100vh', background: '#F5F3EE', fontFamily: "var(--font-space-grotesk)" }}>
                 {/* ── Top Bar ── */}
@@ -300,8 +336,8 @@ export default async function ArticlePage({
                     </div>
                 </section>
 
-                {/* ── Hero Image (DB articles) ── */}
-                {isDbArticle && (
+                {/* ── Hero Image ── */}
+                {(isDbArticle || (staticArticle?.heroImage)) && (
                     <div style={{ maxWidth: 720, margin: '0 auto', padding: '32px 20px 0' }}>
                         <div style={{
                             borderRadius: 20, overflow: 'hidden',
@@ -309,7 +345,7 @@ export default async function ArticlePage({
                             border: '1px solid rgba(17,17,17,0.07)',
                         }}>
                             <Image
-                                src={`/images/blog/${slug}.png`}
+                                src={staticArticle?.heroImage || `/images/blog/${slug}.png`}
                                 alt={title}
                                 fill
                                 style={{ objectFit: 'cover' }}
