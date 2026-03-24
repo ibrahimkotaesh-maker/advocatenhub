@@ -62,6 +62,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         'pro-deo-advocaat', 'no-cure-no-pay-advocaat', 'advocaat-kiezen-tips',
         'vaststellingsovereenkomst', 'echtscheiding-kosten', 'transitievergoeding-berekenen',
         'alimentatie-berekenen', 'ontslag-op-staande-voet',
+        'alimentatie-wijzigen', 'arbeidsovereenkomst-opzeggen',
     ];
 
     let dbBlogSlugs: string[] = [];

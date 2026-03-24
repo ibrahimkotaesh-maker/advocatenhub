@@ -115,32 +115,57 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     },
     {
         slug: 'pro-deo-advocaat',
-        title: 'Pro Deo Advocaat: Wanneer Heeft U Recht op Gratis Rechtshulp?',
+        title: 'Pro Deo Advocaat: De Complete Gids voor Gratis Rechtshulp in Nederland (2026)',
         metaTitle: 'Pro Deo Advocaat | Uw Recht op Gratis Rechtshulp | AdvocaatVinder',
-        metaDescription: 'Alles over de pro deo advocaat: wie komt in aanmerking, wat kost het, en hoe vindt u er een? Complete gids voor gesubsidieerde rechtsbijstand in Nederland.',
+        metaDescription: 'Pro deo advocaat nodig? Complete gids: inkomensgrenzen 2026, eigen bijdrage (€69–€897), aanvraagprocedure, strafrecht piketadvocaat en 10 veelgestelde vragen.',
         publishedAt: '2026-02-27',
-        updatedAt: '2026-02-27',
-        readingTime: '5 min',
+        updatedAt: '2026-03-24',
+        readingTime: '12 min',
         category: 'Rechtsbijstand',
         keyword: 'pro deo advocaat',
         searchVolume: '390/mo',
-        tldr: 'Een pro deo advocaat is een advocaat die u (bijna) gratis krijgt via gesubsidieerde rechtsbijstand. U betaalt alleen een eigen bijdrage vanaf €69. Hieronder leest u of u in aanmerking komt en hoe u direct een pro deo advocaat vindt.',
+        heroImage: '/images/blog/pro-deo-advocaat.jpg',
+        tldr: 'Een pro deo advocaat is een advocaat die u (bijna) gratis krijgt via gesubsidieerde rechtsbijstand. U betaalt alleen een eigen bijdrage vanaf €69. Hieronder leest u wie in aanmerking komt, hoe u het aanvraagt, en wat de procedure is per rechtsgebied.',
         sections: [
             {
                 heading: 'Wat is een pro deo advocaat?',
-                content: 'Een pro deo advocaat is een advocaat die juridische bijstand verleent aan cliënten die niet genoeg verdienen om zelf een advocaat te betalen. "Pro deo" is Latijn voor "voor God" en betekent in de praktijk "gratis" of "tegen gereduceerd tarief".\n\nIn Nederland is het officiële systeem gesubsidieerde rechtsbijstand. De advocaat ontvangt een vergoeding van de overheid (via de Raad voor Rechtsbijstand), en de cliënt betaalt een beperkte eigen bijdrage.',
+                content: 'Een pro deo advocaat is een advocaat die juridische bijstand verleent aan cliënten die niet genoeg verdienen om zelf een advocaat te betalen. "Pro deo" is Latijn voor "voor God" en betekent in de praktijk "tegen gereduceerd tarief".\n\nIn Nederland is het officiële systeem **gesubsidieerde rechtsbijstand**, vastgelegd in de Wet op de rechtsbijstand (Wrb). De advocaat ontvangt een vaste vergoeding van de overheid via de Raad voor Rechtsbijstand, en de cliënt betaalt een beperkte eigen bijdrage.\n\nBelangrijk: een pro deo advocaat is geen "mindere" advocaat. Het is een reguliere, NOvA-geregistreerde advocaat die ervoor kiest om ook op toevoegingsbasis te werken.',
             },
             {
-                heading: 'Verschil met een reguliere advocaat',
-                content: 'Een pro deo advocaat is een reguliere, NOvA-geregistreerde advocaat die ervoor kiest om ook zaken op toevoegingsbasis aan te nemen. Er is geen verschil in kwaliteit — dezelfde advocaat kan zowel betalende cliënten als pro deo cliënten bijstaan.\n\nWel zijn er verschillen:\n• **Kosten:** Pro deo betaalt u alleen de eigen bijdrage (€155-€897). Bij een reguliere advocaat betaalt u het volledige uurtarief.\n• **Beschikbaarheid:** Niet alle advocaten werken op toevoegingsbasis. Gebruik AdvocaatVinder om een geschikte advocaat te vinden.\n• **Vergoeding:** De advocaat ontvangt van de overheid circa €800-€1.100 per zaak, ongeacht de werkelijke tijdsbesteding.',
+                heading: 'Wie komt in aanmerking? Inkomensgrenzen 2026',
+                content: 'Of u in aanmerking komt hangt af van uw inkomen en vermogen. De Raad voor Rechtsbijstand toetst dit aan de hand van uw fiscale gegevens van twee jaar geleden (peiljaar 2024).\n\n**Inkomensgrenzen 2026:**\n• **Alleenstaanden:** maximaal €30.000 bruto jaarinkomen\n• **Samenwonenden/gehuwden:** maximaal €42.400 bruto jaarinkomen\n\n**Vermogensgrenzen 2026:**\n• Maximaal **€31.340** aan vermogen (excl. eigen woning en pensioenvoorzieningen)\n\n**Peiljaarverlegging:**\nAls uw huidige inkomen significant lager is dan in het peiljaar (bijvoorbeeld door ontslag of scheiding), kunt u een peiljaarverlegging aanvragen. De Raad beoordeelt dan uw actuele inkomen.\n\n**Hardheidsclausule:**\nZit u net boven de grens maar kunt u door bijzondere omstandigheden de advocaatkosten niet dragen? Dan kunt u een beroep doen op de hardheidsclausule.',
             },
             {
-                heading: 'Hoe vindt u een pro deo advocaat?',
-                content: 'Er zijn meerdere manieren om een pro deo advocaat te vinden:\n\n1. **AdvocaatVinder** — Zoek op specialisatie en stad. Neem contact op om te vragen of de advocaat op toevoegingsbasis werkt.\n\n2. **Het Juridisch Loket** — Gratis eerste hulplijn die u kan doorverwijzen naar geschikte advocaten in uw regio.\n\n3. **De Raad voor Rechtsbijstand** — Via het spreekuuroverzicht op rvr.org vindt u advocaten die deelnemen aan het piketrooster.\n\n4. **De rechtbank** — Bij strafzaken wordt automatisch een piketadvocaat toegewezen als u geen eigen advocaat heeft.',
+                heading: 'Eigen bijdrage: wat betaalt u zelf?',
+                content: 'Ook bij een pro deo advocaat betaalt u een eigen bijdrage. De hoogte hangt af van uw inkomen:\n\n**Eigen bijdrage alleenstaanden 2026:**\n• Inkomen tot €21.600: **€155**\n• Inkomen €21.601 – €24.200: **€287**\n• Inkomen €24.201 – €27.000: **€434**\n• Inkomen €27.001 – €30.000: **€897**\n\n**Korting:**\n• Bij doorverwijzing via het Juridisch Loket: **€58 korting**\n• Bij strafzaken met piketadvocaat: eigen bijdrage vanaf **€69**\n\nDeze eigen bijdrage betaalt u rechtstreeks aan uw advocaat, meestal in termijnen. De rest — vaak €800 tot €1.100 per zaak — wordt door de overheid vergoed.\n\n**Let op:** griffierechten komen apart voor uw rekening. Bij een laag inkomen kunt u bijzondere bijstand aanvragen bij uw gemeente.',
             },
             {
-                heading: 'Pro deo bij strafzaken',
-                content: 'Bij strafzaken heeft u altijd recht op een advocaat, ook als u niet kunt betalen. Dit is vastgelegd in het Europees Verdrag voor de Rechten van de Mens (EVRM, artikel 6).\n\nBij aanhouding door de politie krijgt u automatisch een piketadvocaat toegewezen voor het eerste verhoor. Dit is sinds 2017 verplicht en volledig kosteloos.\n\nVoor de verdere procedure kunt u een toevoeging aanvragen als u aan de inkomenscriteria voldoet. De piketadvocaat kan u hierbij helpen.',
+                heading: 'Verschil tussen pro deo en een reguliere advocaat',
+                content: 'Er bestaat een hardnekkig misverstand dat pro deo advocaten "minder goed" zouden zijn. Dit is onjuist:\n\n**Kwaliteit:** exact dezelfde advocaten — NOvA-geregistreerd, verzekerd, bijgeschoold. Dezelfde beroepsregels en tuchtrecht.\n\n**Kosten:** Pro deo: eigen bijdrage €155–€897 + griffierecht. Regulier: uurtarief €150–€400+ (gemiddeld €225/uur).\n\n**Beschikbaarheid:** niet alle advocaten werken op toevoegingsbasis — de vaste overheidsvergoeding dekt soms niet de werkelijke uren. Via AdvocaatVinder kunt u gericht zoeken.\n\n**Tijdsbesteding:** een goede pro deo advocaat besteedt de noodzakelijke uren, ongeacht de vergoeding.',
+            },
+            {
+                heading: 'Hoe vraagt u een pro deo advocaat aan?',
+                content: 'Er zijn drie routes:\n\n**Route 1: Via het Juridisch Loket (aanbevolen)**\n1. Bel 0900-8020 (normaal tarief)\n2. U krijgt gratis eerste advies van een jurist\n3. Bij doorverwijzing ontvangt u een diagnosekaart → **€58 korting** op de eigen bijdrage\n4. Het Juridisch Loket verwijst u door naar een geschikte toevoegingsadvocaat\n\n**Route 2: Rechtstreeks bij een advocaat**\n1. Zoek via AdvocaatVinder een advocaat op specialisatie en regio\n2. Vraag of de advocaat op toevoegingsbasis werkt\n3. De advocaat vraagt zelf de toevoeging aan bij de Raad voor Rechtsbijstand\n4. Binnen 2–4 weken ontvangt u bericht\n\n**Route 3: Online controleren**\n1. Ga naar mijn.rvr.org en log in met DigiD\n2. U kunt direct zien of u aan de inkomenscriteria voldoet\n\n**Bij spoedzaken** (strafrecht, dreigende huisuitzetting) kan een spoedtoevoeging worden aangevraagd — doorgaans binnen 24 uur afgehandeld.',
+            },
+            {
+                heading: 'Pro deo bij strafzaken: piketadvocaat',
+                content: 'Bij strafzaken geldt een bijzonder regime. Uw recht op juridische bijstand is vastgelegd in het EVRM (artikel 6).\n\n**Bij aanhouding door de politie:**\n• U krijgt automatisch een **piketadvocaat** toegewezen — volledig **kosteloos**\n• De piketadvocaat is aanwezig bij het eerste politieverhoor (verplicht sinds 2017)\n• U mag altijd een eigen advocaat kiezen in plaats van de piketadvocaat\n• U mag vooraf 30 minuten vertrouwelijk overleggen\n• De politie mag pas beginnen na overleg met uw advocaat\n\n**Na het politieverhoor:**\nVoor de verdere strafprocedure kunt u een toevoeging aanvragen als u aan de inkomenscriteria voldoet.\n\n**Minderjarigen:**\nVerdachten onder de 18 jaar hebben altijd recht op een raadsman, ongeacht het inkomen.',
+            },
+            {
+                heading: 'Pro deo per rechtsgebied: wanneer mogelijk?',
+                content: 'Niet voor alle juridische zaken kunt u een toevoeging krijgen:\n\n**Toevoeging wel mogelijk:**\n✅ Familierecht — echtscheiding, alimentatie, voogdij\n✅ Arbeidsrecht — ontslag, vaststellingsovereenkomst, loonvordering\n✅ Strafrecht — verdediging bij misdrijven en overtredingen\n✅ Huurrecht — dreigende huisuitzetting, huurgeschillen\n✅ Bestuursrecht — bezwaar tegen overheidsbesluiten, uitkeringszaken\n✅ Vreemdelingenrecht — asielzaken, verblijfsvergunning\n\n**Toevoeging niet mogelijk:**\n❌ Consumentenzaken met een belang onder €500\n❌ Eenvoudige verkeersovertredingen\n❌ Zaken gedekt door een rechtsbijstandverzekering\n❌ Zaken met te klein financieel belang\n\nBij twijfel: de advocaat kan een toevoeging aanvragen, en de Raad beslist.',
+            },
+            {
+                heading: 'Alternatieven als u geen recht heeft op pro deo',
+                content: 'Valt u net buiten de inkomensgrenzen?\n\n**1. Rechtsbijstandverzekering** — DAS, ARAG, Stichting Achmea. Veel Nederlanders zijn verzekerd zonder het te weten.\n\n**2. Gratis kennismakingsgesprek** — Veel advocaten bieden 15–30 minuten gratis eerste gesprek aan.\n\n**3. No cure no pay** — Bij letselschadezaken betaalt u alleen bij succes (15%–25%).\n\n**4. Vaste prijs per zaak** — Bijv. €600–€1.500 voor VSO-controle.\n\n**5. Betalingsregeling** — Veel kantoren bieden termijnbetalingen aan.\n\n**6. Vakbond** — FNV en CNV bieden gratis juridische bijstand bij arbeidsgeschillen.\n\n**7. Bijzondere bijstand** — Vraag bij uw gemeente bijstand aan voor griffierechten en advocaatkosten.',
+            },
+            {
+                heading: 'Tips voor het kiezen van een goede pro deo advocaat',
+                content: 'Niet elke pro deo advocaat is geschikt voor uw zaak:\n\n**1. Zoek op specialisatie** — Een specialist in uw rechtsgebied levert betere resultaten. Filter via AdvocaatVinder.\n\n**2. Check registratie** — Controleer op advocatenorde.nl of de advocaat geregistreerd is.\n\n**3. Vraag naar beschikbaarheid** — Sommige advocaten hebben een wachtlijst voor toevoegingszaken.\n\n**4. Lees recensies** — Eerdere cliënten geven een realistisch beeld van kwaliteit en communicatie.\n\n**5. Vergelijk meerdere advocaten** — Vraag bij 2–3 advocaten een kennismakingsgesprek aan.',
+            },
+            {
+                heading: 'Veelgestelde vragen over pro deo advocaten',
+                content: '**Is een pro deo advocaat helemaal gratis?**\nNee, u betaalt een eigen bijdrage van €155 tot €897 plus eventuele griffierechten. Alleen de piketadvocaat bij het eerste politieverhoor is volledig kosteloos.\n\n**Mag ik zelf een pro deo advocaat kiezen?**\nJa, mits de advocaat op toevoegingsbasis werkt. Niet alle advocaten doen dit.\n\n**Hoe lang duurt de aanvraag?**\nGemiddeld 2–4 weken. Bij spoedzaken binnen 24 uur.\n\n**Kan mijn toevoeging worden ingetrokken?**\nJa, als achteraf blijkt dat u geen recht had op een toevoeging. U moet dan alsnog het honorarium betalen.\n\n**Geldt pro deo ook bij hoger beroep?**\nJa, u kunt opnieuw een toevoeging aanvragen voor hoger beroep en cassatie.\n\n**Telt mijn partner\'s inkomen mee?**\nJa, tenzij uw zaak tegen uw partner is gericht (bijv. echtscheiding).\n\n**Kan ik pro deo een mediator krijgen?**\nJa, als de mediator ingeschreven staat bij de Raad voor Rechtsbijstand.\n\n**Wat als ik de eigen bijdrage niet kan betalen?**\nVraag een betalingsregeling bij uw advocaat of bijzondere bijstand bij uw gemeente.\n\n**Hoeveel toevoegingen mag een advocaat aannemen?**\nMaximaal 250 toevoegingen per jaar, om de kwaliteit te waarborgen.\n\n**Wat als mijn zaak internationale aspecten heeft?**\nOok bij internationale zaken (familierecht over de grens, internationale kinderontvoering) kunt u in Nederland een toevoeging aanvragen.',
             },
         ],
     },
@@ -503,8 +528,8 @@ const SPECIALTY_BLOG_MAP: Record<string, string[]> = {
     // Cost-related articles are relevant to ALL specialties
     _general: ['wat-kost-een-advocaat', 'advocaat-kiezen-tips'],
     // Specialty-specific mappings
-    familierecht: ['echtscheiding-kosten', 'alimentatie-berekenen', 'wat-kost-een-advocaat'],
-    arbeidsrecht: ['vaststellingsovereenkomst', 'ontslag-op-staande-voet', 'transitievergoeding-berekenen'],
+    familierecht: ['echtscheiding-kosten', 'alimentatie-berekenen', 'alimentatie-wijzigen'],
+    arbeidsrecht: ['vaststellingsovereenkomst', 'ontslag-op-staande-voet', 'arbeidsovereenkomst-opzeggen'],
     strafrecht: ['pro-deo-advocaat', 'gesubsidieerde-rechtsbijstand', 'wat-kost-een-advocaat'],
     letselschaderecht: ['no-cure-no-pay-advocaat', 'wat-kost-een-advocaat', 'advocaat-kiezen-tips'],
     huurrecht: ['wat-kost-een-advocaat', 'gesubsidieerde-rechtsbijstand', 'advocaat-kiezen-tips'],
