@@ -246,6 +246,19 @@ body {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
+/* ─── Blog Table of Contents ─── */
+.toc-item:hover {
+  background: rgba(230, 59, 46, 0.04);
+  color: #111111 !important;
+}
+.toc-item:hover span:first-child {
+  background: #E63B2E !important;
+  color: #fff !important;
+}
+.toc-item:hover svg {
+  opacity: 1 !important;
+}
+
 /* ─── Responsive ─── */
 @media (max-width: 640px) {
   .search-bar-light {

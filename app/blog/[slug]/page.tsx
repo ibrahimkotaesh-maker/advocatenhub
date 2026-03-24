@@ -362,23 +362,64 @@ export default async function ArticlePage({
                     {sections && sections.length > 0 && (
                         <nav style={{
                             background: 'white', borderRadius: 20,
-                            border: '1px solid rgba(17,17,17,0.07)', padding: '24px 28px', marginBottom: 32,
+                            border: '1px solid rgba(17,17,17,0.07)', padding: '28px 32px', marginBottom: 32,
+                            boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
                         }}>
-                            <p style={{
-                                margin: '0 0 12px', fontFamily: "var(--font-space-mono)", fontSize: 10,
-                                color: 'rgba(17,17,17,0.35)', letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 700,
+                            <div style={{
+                                display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20,
+                                paddingBottom: 16, borderBottom: '2px solid rgba(230,59,46,0.12)',
                             }}>
-                                Inhoudsopgave
-                            </p>
-                            <ol style={{ margin: 0, padding: '0 0 0 18px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+                                <div style={{
+                                    width: 28, height: 28, borderRadius: 8, background: '#E63B2E',
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                }}>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round">
+                                        <line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" />
+                                        <line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" />
+                                    </svg>
+                                </div>
+                                <p style={{
+                                    margin: 0, fontFamily: "var(--font-space-mono)", fontSize: 11,
+                                    color: '#111111', letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 700,
+                                }}>
+                                    Inhoudsopgave
+                                </p>
+                                <span style={{
+                                    marginLeft: 'auto', fontFamily: "var(--font-space-mono)", fontSize: 10,
+                                    color: 'rgba(17,17,17,0.3)', fontWeight: 500,
+                                }}>
+                                    {sections.length} secties
+                                </span>
+                            </div>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                                 {sections.map((s, i) => (
-                                    <li key={i} style={{ fontSize: 14, color: 'rgba(17,17,17,0.6)', lineHeight: 1.5 }}>
-                                        <a href={`#section-${i}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <a
+                                        key={i}
+                                        href={`#section-${i}`}
+                                        className="toc-item"
+                                        style={{
+                                            display: 'flex', alignItems: 'center', gap: 14,
+                                            textDecoration: 'none', color: 'rgba(17,17,17,0.65)',
+                                            padding: '10px 12px', borderRadius: 12,
+                                            transition: 'all 0.2s ease',
+                                        }}
+                                    >
+                                        <span style={{
+                                            minWidth: 28, height: 28, borderRadius: 8,
+                                            background: 'rgba(230,59,46,0.08)', color: '#E63B2E',
+                                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                            fontFamily: "var(--font-space-mono)", fontSize: 11, fontWeight: 700,
+                                            transition: 'all 0.2s ease',
+                                        }}>
+                                            {String(i + 1).padStart(2, '0')}
+                                        </span>
+                                        <span style={{ fontSize: 14, fontWeight: 500, lineHeight: 1.4 }}>
                                             {s.heading}
-                                        </a>
-                                    </li>
+                                        </span>
+                                        <svg style={{ marginLeft: 'auto', opacity: 0, transition: 'opacity 0.2s ease', flexShrink: 0 }} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#E63B2E" strokeWidth="2.5" strokeLinecap="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                                    </a>
                                 ))}
-                            </ol>
+                            </div>
                         </nav>
                     )}
 
