@@ -519,6 +519,118 @@ export const BLOG_ARTICLES: BlogArticle[] = [
             },
         ],
     },
+    {
+        slug: 'alimentatie-wijzigen',
+        title: 'Alimentatie Wijzigen: Wanneer Kan Het en Hoe Vraagt U Het Aan? (2026)',
+        metaTitle: 'Alimentatie Wijzigen | Verzoek bij Gewijzigde Omstandigheden | AdvocaatVinder',
+        metaDescription: 'Alimentatie wijzigen bij inkomensdaling, hertrouwen of samenwonen? Complete gids: wanneer mag het, hoe dient u een verzoekschrift in, en wat zijn de kosten? Bijgewerkt 2026.',
+        publishedAt: '2026-03-24',
+        updatedAt: '2026-03-24',
+        readingTime: '12 min',
+        category: 'Familierecht',
+        keyword: 'alimentatie wijzigen',
+        searchVolume: '1.500/mo',
+        heroImage: '/images/blog/alimentatie-wijzigen.jpg',
+        tldr: 'Alimentatie kan worden gewijzigd als er sprake is van gewijzigde omstandigheden, zoals inkomensdaling, hertrouwen of een nieuwe zorgregeling. U heeft hiervoor een advocaat nodig die een verzoekschrift indient bij de rechtbank.',
+        sections: [
+            {
+                heading: 'Wanneer kan alimentatie worden gewijzigd?',
+                content: 'Alimentatie \u2014 zowel kinderalimentatie als partneralimentatie \u2014 kan worden gewijzigd als er sprake is van **gewijzigde omstandigheden**. Dit is wettelijk vastgelegd in artikel 1:401 van het Burgerlijk Wetboek.\n\nDe wijziging moet betrekking hebben op omstandigheden die:\n\u2022 **Relevant** zijn voor de alimentatieberekening (inkomen, draagkracht, behoefte)\n\u2022 **Ingrijpend** genoeg zijn om de oorspronkelijke afspraak onredelijk te maken\n\u2022 **Na de oorspronkelijke vaststelling** zijn opgetreden\n\nBelangrijk: de jaarlijkse automatische indexering (4,6% in 2026) is g\u00e9\u00e9n gewijzigde omstandigheid.',
+            },
+            {
+                heading: 'Gewijzigde omstandigheden: 8 erkende gronden',
+                content: 'De rechtspraak heeft een reeks situaties erkend als gewijzigde omstandigheden:\n\n**1. Inkomensdaling** \u2014 Ontslag, arbeidsongeschiktheid, faillissement, of significante teruggang in omzet bij zelfstandigen.\n\n**2. Inkomensstijging** \u2014 Een nieuwe baan met hoger salaris kan leiden tot verhoging.\n\n**3. Samenwonen met een nieuwe partner** \u2014 Partneralimentatie kan vervallen (art. 1:160 BW).\n\n**4. Hertrouwen of geregistreerd partnerschap** \u2014 Be\u00ebindigt partneralimentatie automatisch en definitief.\n\n**5. Verandering in de zorgregeling** \u2014 Als kinderen meer dagen bij de andere ouder wonen.\n\n**6. Geboorte van een kind** \u2014 Een nieuw kind be\u00efnvloedt de draagkracht.\n\n**7. Pensionering** \u2014 Bij pensionering daalt het inkomen.\n\n**8. Grove miskenning van wettelijke maatstaven** \u2014 Oorspronkelijke alimentatie op basis van onjuiste gegevens.',
+            },
+            {
+                heading: 'Kinderalimentatie wijzigen vs. partneralimentatie wijzigen',
+                content: '**Kinderalimentatie:**\n\u2022 Kan altijd worden gewijzigd bij gewijzigde omstandigheden\n\u2022 De behoefte van het kind staat centraal\n\u2022 Kan niet worden be\u00ebindigd door samenwonen van de ontvangende ouder\n\u2022 Loopt door tot het kind 21 jaar wordt\n\n**Partneralimentatie:**\n\u2022 Kan worden gewijzigd bij gewijzigde omstandigheden\n\u2022 Vervalt automatisch bij hertrouwen of geregistreerd partnerschap\n\u2022 Kan eindigen bij duurzaam samenwonen met een nieuwe partner\n\u2022 Maximale duur: 5 jaar na het huwelijk (uitzonderingen: huwelijken >15 jaar, kinderen <12)\n\n**Let op:** kinderalimentatie gaat altijd v\u00f3\u00f3r partneralimentatie.',
+            },
+            {
+                heading: 'De procedure: stap voor stap',
+                content: 'Alimentatie wijzigen via de rechtbank werkt als volgt:\n\n**Stap 1: Overleg met uw ex-partner** \u2014 Probeer eerst onderling tot een aanpassing te komen. Leg nieuwe afspraken schriftelijk vast.\n\n**Stap 2: Mediation (optioneel)** \u2014 Kosten: \u20ac150\u2013\u20ac250 per uur.\n\n**Stap 3: Verzoekschrift bij de rechtbank** \u2014 Uw advocaat dient een verzoekschrift in. Hiervoor is altijd een advocaat nodig.\n\n**Stap 4: De zitting** \u2014 Beide partijen lichten hun standpunt toe.\n\n**Stap 5: De beschikking** \u2014 Binnen 4\u20138 weken doet de rechter uitspraak. De nieuwe alimentatie gaat in vanaf de datum van het verzoekschrift.\n\n**Doorlooptijd:** gemiddeld 3\u20136 maanden.',
+            },
+            {
+                heading: 'Wijziging met terugwerkende kracht',
+                content: 'In principe gaat een alimentatiewijziging in op de datum van het verzoekschrift. Wijziging met terugwerkende kracht is mogelijk, maar de rechter is terughoudend.\n\n**Wanneer wel terugwerkende kracht:**\n\u2022 De alimentatieplichtige heeft aantoonbaar al langer een lager inkomen\n\u2022 De wederpartij wist van de gewijzigde omstandigheden\n\n**Wanneer geen terugwerkende kracht:**\n\u2022 De alimentatieplichtige heeft niet betaald zonder geldige reden\n\u2022 De vertraging is veroorzaakt door de verzoeker zelf\n\n**Tip:** dien het verzoekschrift zo snel mogelijk in.',
+            },
+            {
+                heading: 'Kosten van alimentatie wijzigen',
+                content: '**Onderling overleg:** advocaatkosten \u20ac300\u2013\u20ac800. Geen griffierechten.\n\n**Via de rechtbank:** advocaatkosten \u20ac1.500\u2013\u20ac4.000. Griffierechten: \u20ac341 (2026).\n\n**Bij gesubsidieerde rechtsbijstand:** eigen bijdrage \u20ac155\u2013\u20ac897. Griffierechten: \u20ac92.\n\n**Mediation:** \u20ac150\u2013\u20ac250 per uur, 3\u20135 sessies. Totaal: \u20ac450\u2013\u20ac1.250.\n\n**Tip:** veel alimentatie-advocaten bieden een eerste gratis consult aan.',
+            },
+            {
+                heading: 'Alimentatie stopzetten: wanneer kan het?',
+                content: 'Partneralimentatie eindigt automatisch bij:\n\n**1. Hertrouwen** van de alimentatiegerechtigde \u2014 definitief.\n**2. Geregistreerd partnerschap** \u2014 zelfde effect.\n**3. Duurzaam samenwonen** met een nieuwe partner.\n**4. Verloop van de wettelijke termijn** \u2014 Na 5 jaar.\n**5. Overlijden** van een van beide partijen.\n\n**Kinderalimentatie** eindigt wanneer het kind 21 wordt, financi\u00ebl zelfstandig wordt, of trouwt.',
+            },
+            {
+                heading: 'Praktijkvoorbeeld: hoe verloopt een wijziging?',
+                content: '**Situatie:** Mark (44) betaalt \u20ac1.200 kinderalimentatie en \u20ac800 partneralimentatie. Mark verliest zijn baan (\u20ac65.000 bruto) en vindt een nieuwe baan met \u20ac42.000 bruto.\n\n**Stap 1:** Mark overlegt met Lisa. Lisa weigert verlaging.\n**Stap 2:** Marks advocaat dient een verzoekschrift in.\n**Stap 3:** De rechter herberekent de draagkracht.\n\n**Uitkomst:** Kinderalimentatie verlaagd naar \u20ac850, partneralimentatie naar \u20ac400. Wijziging per datum verzoekschrift.\n\n**Doorlooptijd:** 4 maanden. **Kosten:** advocaat \u20ac2.200, griffierecht \u20ac341.',
+            },
+            {
+                heading: 'Tips om uw wijzigingsverzoek te versterken',
+                content: '**1. Verzamel bewijsstukken** \u2014 Loonstrookjes, ontslagbrief, nieuwe arbeidscontract.\n\n**2. Laat een actuele alimentatieberekening maken** \u2014 Professioneel is krachtiger.\n\n**3. Toon aan dat u zich inspant** \u2014 Bewijs actief solliciteren (inspanningsverplichting).\n\n**4. Reageer tijdig** \u2014 De rechter laat wijziging ingaan vanaf datum indiening.\n\n**5. Schakel een gespecialiseerde advocaat in** \u2014 Een familierecht advocaat kent de jurisprudentie.',
+            },
+            {
+                heading: 'Veelgestelde vragen over alimentatie wijzigen',
+                content: '**Kan ik zelf alimentatie verlagen zonder rechter?**\nAlleen als uw ex-partner akkoord gaat. Leg dit schriftelijk vast.\n\n**Hoe snel kan de rechter alimentatie wijzigen?**\nGemiddeld 3\u20136 maanden.\n\n**Kan alimentatie met terugwerkende kracht worden gewijzigd?**\nJa, maar de rechter is terughoudend. Wijziging gaat in principe in per datum verzoekschrift.\n\n**Wat als mijn ex gaat samenwonen?**\nBij partneralimentatie: u kunt verzoeken om be\u00ebindiging (art. 1:160 BW). Dit is definitief.\n\n**Moet ik een advocaat inschakelen?**\nJa, voor een verzoek bij de rechtbank is een advocaat verplicht.\n\n**Kan alimentatie ook worden verhoogd?**\nJa, als de draagkracht is gestegen of de behoefte is toegenomen.\n\n**Telt het inkomen van mijn nieuwe partner mee?**\nNiet direct, maar het kan indirect invloed hebben op uw woonlasten en draagkracht.',
+            },
+        ],
+    },
+    {
+        slug: 'arbeidsovereenkomst-opzeggen',
+        title: 'Arbeidsovereenkomst Opzeggen: Opzegtermijn, Procedure en Gevolgen (2026)',
+        metaTitle: 'Arbeidsovereenkomst Opzeggen | Opzegtermijn & Procedure Zonder Risico | AdvocaatVinder',
+        metaDescription: 'Arbeidsovereenkomst opzeggen als werknemer? Complete gids: opzegtermijn (1\u20136 maanden), ontslagbrief, WW-gevolgen, vast en tijdelijk contract. 2026.',
+        publishedAt: '2026-03-24',
+        updatedAt: '2026-03-24',
+        readingTime: '11 min',
+        category: 'Arbeidsrecht',
+        keyword: 'arbeidsovereenkomst opzeggen',
+        searchVolume: '2.000/mo',
+        heroImage: '/images/blog/arbeidsovereenkomst-opzeggen.jpg',
+        tldr: 'De wettelijke opzegtermijn voor werknemers is 1 maand, ongeacht de duur van uw dienstverband. Let op: als u zelf opzegt, heeft u in principe geen recht op WW. Hieronder leest u precies hoe u correct opzegt en wat uw rechten zijn.',
+        sections: [
+            {
+                heading: 'Hoe zegt u een arbeidsovereenkomst correct op?',
+                content: 'Het opzeggen van uw arbeidsovereenkomst is een formele handeling met juridische gevolgen:\n\n**1. Check uw contract en CAO** \u2014 Lees de opzegtermijn en opzegregels.\n\n**2. Zeg schriftelijk op** \u2014 Per brief of e-mail. Dit dient als bewijs.\n\n**3. Houd de opzegtermijn aan** \u2014 De opzegging geschiedt doorgaans tegen het einde van de maand.\n\n**4. Bewaar bewijs** \u2014 Stuur aangetekend of vraag ontvangstbevestiging.',
+            },
+            {
+                heading: 'Opzegtermijn voor werknemers: de regels',
+                content: 'De **wettelijke opzegtermijn** voor een werknemer is **1 maand**. Dit geldt ongeacht hoe lang u in dienst bent.\n\n**Afwijkende afspraken zijn mogelijk:**\n\u2022 In uw contract of CAO kan een langere opzegtermijn staan (maximaal 6 maanden)\n\u2022 Als uw opzegtermijn langer is dan 1 maand, moet de werkgever minimaal het dubbele aanhouden\n\u2022 Een kortere opzegtermijn dan 1 maand is alleen via de CAO toegestaan\n\n**Voorbeeld:** als u op 15 maart opzegt met 1 maand opzegtermijn, loopt de opzegtermijn van 1 april t/m 30 april. Laatste werkdag: 30 april.\n\n**Let op:** opzeggen per direct kan leiden tot een schadevergoeding aan uw werkgever.',
+            },
+            {
+                heading: 'Vast contract vs. tijdelijk contract',
+                content: '**Vast contract (onbepaalde tijd):**\n\u2022 U kunt altijd opzeggen met inachtneming van de opzegtermijn\n\u2022 U bent vrij om te vertrekken\n\n**Tijdelijk contract (bepaalde tijd):**\n\u2022 Tussentijds opzeggen kan alleen als er een tussentijds opzegbeding in uw contract staat\n\u2022 Zonder opzegbeding: alleen via vaststellingsovereenkomst of kantonrechter\n\n**Proeftijd:**\n\u2022 Per direct be\u00ebindigen mogelijk (1\u20132 maanden)\n\u2022 Geen opzegtermijn, geen reden nodig',
+            },
+            {
+                heading: 'Voorbeeld ontslagbrief',
+                content: 'Een ontslagbrief hoeft niet lang te zijn:\n\n**[Uw naam]**\n[Uw adres]\n[Datum]\n\nAan: [Naam werkgever]\n[Adres werkgever]\n\nBetreft: Opzegging arbeidsovereenkomst\n\nGeachte heer/mevrouw [naam],\n\nHierbij zeg ik mijn arbeidsovereenkomst op met inachtneming van de geldende opzegtermijn van [X maand/maanden]. Mijn laatste werkdag is derhalve [datum].\n\nIk dank u voor de prettige samenwerking en ben bereid om een goede overdracht te verzorgen.\n\nMet vriendelijke groet,\n[Uw naam]\n\n**Tips:** houd de brief zakelijk. Noem de opzegtermijn en laatste werkdag. Stuur aangetekend of per e-mail met leesbevestiging.',
+            },
+            {
+                heading: 'Gevolgen voor uw WW-uitkering',
+                content: '**Als u zelf opzegt, heeft u in principe geen recht op WW.** Het UWV beschouwt u als verwijtbaar werkloos.\n\n**Uitzonderingen (wel WW):**\n\u2022 Ernstig verwijtbaar handelen door werkgever (intimidatie, niet betalen loon)\n\u2022 Op medisch advies (verklaring bedrijfsarts)\n\u2022 Meeverhuizing met partner\n\n**Alternatief: vaststellingsovereenkomst**\nAls u weg wilt maar ook WW wilt behouden, is een VSO verstandiger. Het initiatief wordt bij de werkgever gelegd, waardoor WW-rechten behouden blijven.\n\n**Tip:** raadpleeg altijd een arbeidsrecht advocaat voordat u zelf opzegt.',
+            },
+            {
+                heading: 'Schadevergoeding bij onjuiste opzegging',
+                content: 'Als u de opzegtermijn niet respecteert, kan uw werkgever een **gefixeerde schadevergoeding** claimen \u2014 gelijk aan het loon over de niet in acht genomen opzegtermijn.\n\n**Voorbeeld:** 1 maand opzegtermijn, maandsalaris \u20ac3.500 bruto. Bij direct stoppen: werkgever kan \u20ac3.500 eisen.\n\n**In de praktijk:** veel werkgevers zien ervan af als de relatie goed is. Maar de werkgever kan ook het concurrentiebeding afdwingen.\n\n**Belangrijk:** controleer of uw concurrentiebeding van kracht blijft na opzegging.',
+            },
+            {
+                heading: 'Opzeggen tijdens ziekte of zwangerschap',
+                content: '**Tijdens ziekte:** u mag opzeggen, maar verliest recht op 2 jaar loondoorbetaling \u00e9n WW/Ziektewet.\n\n**Tijdens zwangerschap:** u mag opzeggen, maar verliest rechten op uitkeringen.\n\n**Na reorganisatie:** laat de werkgever het initiatief nemen \u2014 zo behoudt u transitievergoeding en WW.\n\n**Vuistregel:** twijfelt u? Zeg dan nooit zelf op voordat u een arbeidsrecht advocaat heeft geraadpleegd.',
+            },
+            {
+                heading: 'Concurrentiebeding na opzegging',
+                content: '**Concurrentiebeding:** verbiedt werken bij een concurrent. Doorgaans 1\u20132 jaar. Moet schriftelijk zijn. Niet geldig bij tijdelijk contract (behalve zwaarwegende bedrijfsbelangen).\n\n**Relatiebeding:** verbiedt benaderen van klanten van uw werkgever.\n\n**Wat kunt u doen?**\n1. Onderhandel over beperking bij vertrek\n2. Rechter kan beding vernietigen bij onbillijke benadeling\n3. Werkgever kan vergoeding verschuldigd zijn (art. 7:653 lid 5 BW)\n\n**Tip:** bespreek het concurrentiebeding met een advocaat voordat u bij uw nieuwe werkgever begint.',
+            },
+            {
+                heading: 'Checklist: voor u opzegt',
+                content: '\u2610 **Opzegtermijn berekend** \u2014 weet u uw laatste werkdag?\n\u2610 **Contract en CAO gelezen** \u2014 afwijkende voorwaarden?\n\u2610 **WW-situatie beoordeeld** \u2014 nieuwe baan of WW-verlies?\n\u2610 **Concurrentiebeding gecontroleerd**\n\u2610 **Ontslagbrief opgesteld** \u2014 schriftelijk met bewijs\n\u2610 **Vakantiedagen** \u2014 worden uitbetaald\n\u2610 **Pensioenopbouw** \u2014 check gevolgen\n\u2610 **Alternatief overwogen** \u2014 is een VSO gunstiger?\n\n**Tip:** als uw werkgever liever wil dat u vertrekt, laat h\u00e9m het initiatief nemen. Zo behoudt u recht op transitievergoeding en WW.',
+            },
+            {
+                heading: 'Veelgestelde vragen over arbeidsovereenkomst opzeggen',
+                content: '**Hoe lang is de opzegtermijn?**\n1 maand wettelijk. In contract of CAO kan langere termijn (max. 6 maanden) staan.\n\n**Moet ik een reden geven?**\nNee, u hoeft geen reden te geven.\n\n**Kan ik per direct opzeggen?**\nAlleen in proeftijd of bij dringende reden. Anders riskeert u schadevergoeding.\n\n**Krijg ik WW als ik zelf opzeg?**\nIn principe niet. Overweeg een VSO als alternatief.\n\n**Kan mijn werkgever mij weigeren op te zeggen?**\nNee, opzegging is eenzijdig.\n\n**Moet ik nog werken tijdens de opzegtermijn?**\nJa, tenzij uw werkgever u vrijstelt.\n\n**Krijg ik vakantiedagen uitbetaald?**\nJa, alle opgebouwde maar niet-opgenomen dagen.\n\n**Heb ik recht op transitievergoeding?**\nIn principe niet als u zelf opzegt.',
+            },
+        ],
+    },
 ];
 
 // ─── Specialty → related blog articles mapping ───────────────────────────────
