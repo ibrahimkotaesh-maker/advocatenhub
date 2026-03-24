@@ -28,7 +28,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
         category: 'Kosten',
         keyword: 'wat kost een advocaat',
         searchVolume: '3.100/mo',
-        heroImage: '/images/blog/wat-kost-een-advocaat.png',
+        heroImage: '/images/blog/wat-kost-een-advocaat.jpg',
         sections: [
             {
                 heading: 'Wat kost een advocaat? De korte versie',
