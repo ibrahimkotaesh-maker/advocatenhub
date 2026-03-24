@@ -35,6 +35,11 @@ export const metadata: Metadata = {
     siteName: 'AdvocaatVinder',
     type: 'website',
     locale: 'nl_NL',
+    images: [{ url: 'https://www.advocaatvinder.nl/images/og-image.png', width: 1200, height: 630, alt: 'AdvocaatVinder' }],
+  },
+  icons: {
+    icon: '/icon.png',
+    apple: '/apple-icon.png',
   },
   verification: {
     google: '_4O-AqYB7ZGBENvXHSEob_9xpYMhKNnI2SAsC_d6Ng4',
@@ -66,7 +71,7 @@ const globalJsonLd = [
     '@type': 'Organization',
     name: 'AdvocaatVinder',
     url: 'https://www.advocaatvinder.nl',
-    logo: 'https://www.advocaatvinder.nl/favicon.ico',
+    logo: 'https://www.advocaatvinder.nl/images/logo.png',
     description:
       'De grootste onafhankelijke gids van 18.670+ NOvA-geregistreerde advocaten in Nederland.',
     contactPoint: {
