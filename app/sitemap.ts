@@ -60,6 +60,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const STATIC_BLOG_SLUGS = [
         'wat-kost-een-advocaat', 'gesubsidieerde-rechtsbijstand',
         'pro-deo-advocaat', 'no-cure-no-pay-advocaat', 'advocaat-kiezen-tips',
+        'vaststellingsovereenkomst', 'echtscheiding-kosten', 'transitievergoeding-berekenen',
+        'alimentatie-berekenen', 'ontslag-op-staande-voet',
     ];
 
     let dbBlogSlugs: string[] = [];
