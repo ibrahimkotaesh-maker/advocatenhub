@@ -356,6 +356,49 @@ export default async function ArticlePage({
                     </div>
                 )}
 
+                {/* ── TL;DR Summary (Above the Fold) ── */}
+                {staticArticle?.tldr && (
+                    <div style={{ maxWidth: 720, margin: '0 auto', padding: '24px 20px 0' }}>
+                        <div style={{
+                            background: 'white', borderRadius: 20,
+                            border: '1px solid rgba(17,17,17,0.07)',
+                            borderLeft: '4px solid #E63B2E',
+                            padding: '24px 28px',
+                            boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
+                        }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="#E63B2E" stroke="none">
+                                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                                </svg>
+                                <span style={{
+                                    fontFamily: "var(--font-space-mono)", fontSize: 10,
+                                    color: '#E63B2E', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 700,
+                                }}>
+                                    Samenvatting
+                                </span>
+                            </div>
+                            <p style={{
+                                margin: 0, fontSize: 15, lineHeight: 1.7,
+                                color: '#333333', fontWeight: 400,
+                            }}>
+                                {staticArticle.tldr}
+                            </p>
+                            <div style={{ marginTop: 16 }}>
+                                <Link href="/advocaten" style={{
+                                    display: 'inline-flex', alignItems: 'center', gap: 8,
+                                    background: '#E63B2E', color: '#fff', textDecoration: 'none',
+                                    padding: '10px 22px', borderRadius: 100,
+                                    fontSize: 13, fontWeight: 700,
+                                    transition: 'all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                                }}>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                                    Vind een specialist
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
                 {/* ── Article Body ── */}
                 <main style={{ maxWidth: 720, margin: '0 auto', padding: '40px 20px 64px' }}>
                     {/* Table of Contents (static articles only) */}

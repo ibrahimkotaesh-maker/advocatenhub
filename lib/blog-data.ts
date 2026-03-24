@@ -13,6 +13,7 @@ export type BlogArticle = {
     keyword: string;
     searchVolume: string;
     heroImage?: string;
+    tldr?: string;
     sections: { heading: string; content: string }[];
 };
 
@@ -20,7 +21,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     {
         slug: 'wat-kost-een-advocaat',
         title: 'Wat Kost een Advocaat in 2026? Het Eerlijke Overzicht van Tarieven, Kosten en Bespaartips',
-        metaTitle: 'Wat Kost een Advocaat? Uurtarieven, Kosten per Zaak & Bespaartips (2026)',
+        metaTitle: 'Wat Kost een Advocaat? | Direct Besparen op Tarieven | AdvocaatVinder',
         metaDescription: 'Wat kost een advocaat per uur in Nederland? Compleet overzicht van uurtarieven (€100-€500+), kosten per rechtsgebied, griffierechten én 6 bewezen manieren om te besparen. Bijgewerkt maart 2026.',
         publishedAt: '2026-02-27',
         updatedAt: '2026-03-24',
@@ -29,6 +30,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
         keyword: 'wat kost een advocaat',
         searchVolume: '3.100/mo',
         heroImage: '/images/blog/wat-kost-een-advocaat.jpg',
+        tldr: 'Een advocaat in Nederland kost gemiddeld €225 per uur (excl. btw), maar tarieven variëren van €100 tot €500+ afhankelijk van ervaring en specialisatie. Hieronder vindt u een eerlijk overzicht van alle kosten per rechtsgebied én 6 bewezen manieren om direct te besparen.',
         sections: [
             {
                 heading: 'Wat kost een advocaat? De korte versie',
@@ -79,7 +81,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     {
         slug: 'gesubsidieerde-rechtsbijstand',
         title: 'Gesubsidieerde Rechtsbijstand: Alles Wat U Moet Weten',
-        metaTitle: 'Gesubsidieerde Rechtsbijstand — Pro Deo Advocaat Uitleg 2026',
+        metaTitle: 'Gesubsidieerde Rechtsbijstand | Gratis Advocaat Aanvragen | AdvocaatVinder',
         metaDescription: 'Wat is gesubsidieerde rechtsbijstand? Leer wie er recht op heeft, hoe u een pro deo advocaat aanvraagt, en wat de eigen bijdrage is. Complete gids 2026.',
         publishedAt: '2026-02-27',
         updatedAt: '2026-02-27',
@@ -87,6 +89,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
         category: 'Rechtsbijstand',
         keyword: 'gesubsidieerde rechtsbijstand',
         searchVolume: '590/mo',
+        tldr: 'Heeft u een laag inkomen? Dan heeft u mogelijk recht op een gratis of bijna-gratis advocaat via de overheid. Wij leggen uit wie er recht op heeft, hoe u het aanvraagt, en wat de eigen bijdrage is (€69–€1.120).',
         sections: [
             {
                 heading: 'Wat is gesubsidieerde rechtsbijstand?',
@@ -113,7 +116,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     {
         slug: 'pro-deo-advocaat',
         title: 'Pro Deo Advocaat: Wanneer Heeft U Recht op Gratis Rechtshulp?',
-        metaTitle: 'Pro Deo Advocaat — Gratis Rechtshulp & Kosten Uitleg 2026',
+        metaTitle: 'Pro Deo Advocaat | Uw Recht op Gratis Rechtshulp | AdvocaatVinder',
         metaDescription: 'Alles over de pro deo advocaat: wie komt in aanmerking, wat kost het, en hoe vindt u er een? Complete gids voor gesubsidieerde rechtsbijstand in Nederland.',
         publishedAt: '2026-02-27',
         updatedAt: '2026-02-27',
@@ -121,6 +124,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
         category: 'Rechtsbijstand',
         keyword: 'pro deo advocaat',
         searchVolume: '390/mo',
+        tldr: 'Een pro deo advocaat is een advocaat die u (bijna) gratis krijgt via gesubsidieerde rechtsbijstand. U betaalt alleen een eigen bijdrage vanaf €69. Hieronder leest u of u in aanmerking komt en hoe u direct een pro deo advocaat vindt.',
         sections: [
             {
                 heading: 'Wat is een pro deo advocaat?',
@@ -143,7 +147,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     {
         slug: 'no-cure-no-pay-advocaat',
         title: 'No Cure No Pay Advocaat: Hoe Werkt Het in Nederland?',
-        metaTitle: 'No Cure No Pay Advocaat — Hoe Werkt Het? Uitleg & Regels 2026',
+        metaTitle: 'No Cure No Pay Advocaat | Geen Risico, Alleen Betalen bij Succes | AdvocaatVinder',
         metaDescription: 'Hoe werkt no cure no pay bij advocaten in Nederland? Leer de regels, voor welke zaken het geldt, en wat de percentages zijn. Complete uitleg.',
         publishedAt: '2026-02-27',
         updatedAt: '2026-02-27',
@@ -151,6 +155,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
         category: 'Kosten',
         keyword: 'no cure no pay advocaat',
         searchVolume: '720/mo',
+        tldr: 'Bij no cure no pay betaalt u uw advocaat alleen als u de zaak wint. Geen resultaat? Geen kosten. Dit model is in Nederland alleen toegestaan bij letselschadezaken. Hieronder leest u precies hoe het werkt en wat de percentages zijn.',
         sections: [
             {
                 heading: 'Wat is no cure no pay?',
@@ -173,7 +178,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     {
         slug: 'advocaat-kiezen-tips',
         title: 'Een Goede Advocaat Kiezen: 7 Tips voor de Juiste Keuze',
-        metaTitle: 'Goede Advocaat Kiezen — 7 Tips voor de Juiste Keuze 2026',
+        metaTitle: 'Goede Advocaat Kiezen | 7 Bewezen Tips om de Beste te Vinden | AdvocaatVinder',
         metaDescription: 'Hoe kiest u de juiste advocaat? 7 praktische tips voor het vinden van een goede advocaat in Nederland. Specialisatie, ervaring, tarieven en meer.',
         publishedAt: '2026-02-27',
         updatedAt: '2026-02-27',
@@ -181,6 +186,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
         category: 'Tips',
         keyword: 'goede advocaat',
         searchVolume: '370/mo',
+        tldr: 'De juiste advocaat kiezen bespaart u tijd, geld en stress. Met deze 7 praktische tips vindt u een specialist die bij uw zaak past — van het checken van specialisatie tot het onderhandelen over het tarief.',
         sections: [
             {
                 heading: '1. Kies een specialist',
@@ -215,7 +221,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     {
         slug: 'vaststellingsovereenkomst',
         title: 'Vaststellingsovereenkomst (VSO): De Complete Gids met Checklist 2026',
-        metaTitle: 'Vaststellingsovereenkomst — Checklist, Bedenktijd & WW-Rechten (2026)',
+        metaTitle: 'Vaststellingsovereenkomst | Behoud WW & Maximale Vergoeding | AdvocaatVinder',
         metaDescription: 'Wat is een vaststellingsovereenkomst? Complete gids met 12-punten checklist, bedenktijd van 14 dagen, WW-uitkering voorwaarden, transitievergoeding en concurrentiebeding. Bijgewerkt 2026.',
         publishedAt: '2026-03-24',
         updatedAt: '2026-03-24',
@@ -224,6 +230,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
         keyword: 'vaststellingsovereenkomst',
         searchVolume: '12.000/mo',
         heroImage: '/images/blog/vaststellingsovereenkomst.jpg',
+        tldr: 'Een vaststellingsovereenkomst (VSO) is een overeenkomst waarmee u en uw werkgever het dienstverband beëindigen. U heeft altijd 14 dagen bedenktijd en kunt uw WW-rechten behouden als de VSO juist is opgesteld. Hieronder leest u exact waar u op moet letten.',
         sections: [
             {
                 heading: 'Wat is een vaststellingsovereenkomst?',
@@ -274,7 +281,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     {
         slug: 'echtscheiding-kosten',
         title: 'Echtscheiding Kosten 2026: Compleet Overzicht van Advocaat, Mediator & Griffierechten',
-        metaTitle: 'Echtscheiding Kosten 2026 — Advocaat, Mediator & Griffierechten Overzicht',
+        metaTitle: 'Echtscheiding Kosten 2026 | Voorkom Onverwachte Rekeningen | AdvocaatVinder',
         metaDescription: 'Wat kost een echtscheiding in 2026? Compleet overzicht: griffierechten (€341), advocaat (€150-€300/uur), mediator, gemeenschappelijk verzoek vs tegenspraak, boedelverdeling en bespaartips.',
         publishedAt: '2026-03-24',
         updatedAt: '2026-03-24',
@@ -283,6 +290,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
         keyword: 'echtscheiding kosten',
         searchVolume: '5.000/mo',
         heroImage: '/images/blog/echtscheiding-kosten.jpg',
+        tldr: 'Een echtscheiding kost gemiddeld €1.750 bij een gezamenlijke aanvraag tot €15.000+ bij een vechtscheiding. De grootste kostenbesparing zit in de keuze tussen advocaat of mediator. Hieronder vindt u alle kosten op een rij én 5 manieren om duizenden euro\'s te besparen.',
         sections: [
             {
                 heading: 'Wat kost een echtscheiding? Het eerlijke antwoord',
@@ -325,7 +333,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     {
         slug: 'transitievergoeding-berekenen',
         title: 'Transitievergoeding 2026: Berekening, Maximum & Veelgestelde Vragen',
-        metaTitle: 'Transitievergoeding Berekenen 2026 — Formule, Maximum €102.000 & Belasting',
+        metaTitle: 'Transitievergoeding Berekenen | Krijg Waar U Recht Op Heeft | AdvocaatVinder',
         metaDescription: 'Hoe berekent u de transitievergoeding in 2026? Formule (1/3 maandsalaris per dienstjaar), maximum €102.000, bruto-netto verschil, belastingtarieven en 3 rekenvoorbeelden.',
         publishedAt: '2026-03-24',
         updatedAt: '2026-03-24',
@@ -334,6 +342,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
         keyword: 'transitievergoeding berekenen',
         searchVolume: '3.500/mo',
         heroImage: '/images/blog/transitievergoeding-berekenen.jpg',
+        tldr: 'De transitievergoeding bedraagt 1/3 maandsalaris per dienstjaar, met een maximum van €102.000 bruto in 2026. U heeft hier recht op bij elk ontslag door de werkgever. Hieronder berekent u in 3 stappen exact hoeveel u krijgt.',
         sections: [
             {
                 heading: 'Wat is de transitievergoeding?',
@@ -376,7 +385,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     {
         slug: 'alimentatie-berekenen',
         title: 'Alimentatie Berekenen 2026: Kinderalimentatie, Partneralimentatie & Indexering',
-        metaTitle: 'Alimentatie Berekenen 2026 — Formule, Indexering 4,6% & NIBUD-Tabellen',
+        metaTitle: 'Alimentatie Berekenen 2026 | Eerlijke Berekening in 3 Stappen | AdvocaatVinder',
         metaDescription: 'Hoe wordt alimentatie berekend in 2026? Kinderalimentatie via NIBUD-tabellen, partneralimentatie berekening, indexering 4,6%, draagkracht en 3 rekenvoorbeelden.',
         publishedAt: '2026-03-24',
         updatedAt: '2026-03-24',
@@ -385,6 +394,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
         keyword: 'alimentatie berekenen',
         searchVolume: '3.000/mo',
         heroImage: '/images/blog/alimentatie-berekenen.jpg',
+        tldr: 'De alimentatie-indexering voor 2026 is 4,6%. Kinderalimentatie wordt berekend via NIBUD-tabellen op basis van gezinsinkomen, partneralimentatie via de 60%-norm en draagkrachtberekening. Hieronder vindt u de volledige stap-voor-stap berekening met twee concrete rekenvoorbeelden.',
         sections: [
             {
                 heading: 'Hoe wordt alimentatie berekend in Nederland?',
@@ -431,7 +441,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     {
         slug: 'ontslag-op-staande-voet',
         title: 'Ontslag op Staande Voet: Uw Rechten, Verweer & Wat U Direct Moet Doen',
-        metaTitle: 'Ontslag op Staande Voet 2026 — Rechten, Verweer & Dringende Reden Uitgelegd',
+        metaTitle: 'Ontslag op Staande Voet | Bescherm Uw Rechten Vandaag | AdvocaatVinder',
         metaDescription: 'Ontslag op staande voet gekregen? Lees wat een dringende reden is, welke rechten u heeft, hoe u het binnen 2 maanden aanvecht, en wanneer het ontslag ongeldig is.',
         publishedAt: '2026-03-24',
         updatedAt: '2026-03-24',
@@ -440,6 +450,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
         keyword: 'ontslag op staande voet',
         searchVolume: '2.500/mo',
         heroImage: '/images/blog/ontslag-op-staande-voet.jpg',
+        tldr: 'Ontslag op staande voet kan worden vernietigd als de werkgever niet aan alle drie de wettelijke vereisten voldoet. U heeft 2 maanden om het aan te vechten bij de kantonrechter. Hieronder leest u precies wat u moet doen, welke rechten u heeft, en wanneer het ontslag ongeldig is.',
         sections: [
             {
                 heading: 'Wat is ontslag op staande voet?',
