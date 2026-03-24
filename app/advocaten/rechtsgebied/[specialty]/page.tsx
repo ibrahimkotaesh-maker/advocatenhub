@@ -1,5 +1,6 @@
 import { supabase, type Lawyer } from '@/lib/supabase';
 import { extractCity, parseFields, getInitials, getAvatarStyle } from '@/lib/utils';
+import { getRelatedBlogArticles } from '@/lib/blog-data';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -503,6 +504,41 @@ export default async function SpecialtyPage({
                             </p>
                         </div>
                     </section>
+
+                    {/* ── Related Blog Articles ── */}
+                    {(() => {
+                        const relatedArticles = getRelatedBlogArticles(specialty, 3);
+                        if (relatedArticles.length === 0) return null;
+                        return (
+                            <section style={{ marginTop: 40 }}>
+                                <h2 style={{ margin: '0 0 16px', fontSize: 18, fontWeight: 700, letterSpacing: '-0.02em', color: '#111111' }}>
+                                    Gerelateerde artikelen over {name.toLowerCase()}
+                                </h2>
+                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 16 }}>
+                                    {relatedArticles.map(article => (
+                                        <Link key={article.slug} href={`/blog/${article.slug}`} style={{
+                                            background: 'white', borderRadius: 16, border: '1px solid rgba(17,17,17,0.07)',
+                                            padding: '20px 24px', textDecoration: 'none', display: 'block',
+                                            transition: 'border-color 0.2s, box-shadow 0.2s',
+                                        }}>
+                                            <span style={{
+                                                fontFamily: "var(--font-space-mono)", fontSize: 10, letterSpacing: '0.08em',
+                                                textTransform: 'uppercase' as const, color: '#E63B2E', fontWeight: 700,
+                                            }}>
+                                                {article.category} · {article.readingTime}
+                                            </span>
+                                            <h3 style={{ margin: '8px 0 6px', fontSize: 15, fontWeight: 700, color: '#111111', lineHeight: 1.3 }}>
+                                                {article.title}
+                                            </h3>
+                                            <p style={{ margin: 0, fontSize: 13, color: 'rgba(17,17,17,0.5)', lineHeight: 1.5 }}>
+                                                {article.metaDescription.slice(0, 120)}…
+                                            </p>
+                                        </Link>
+                                    ))}
+                                </div>
+                            </section>
+                        );
+                    })()}
 
                     {/* ── Other Specialties ── */}
                     <section style={{ marginTop: 40 }}>

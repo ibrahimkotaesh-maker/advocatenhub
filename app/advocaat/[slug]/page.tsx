@@ -1,5 +1,6 @@
 import { supabase, type Lawyer } from '@/lib/supabase';
 import { extractCity, cleanWebsite, shortDomain, parseFields, getInitials, getAvatarStyle } from '@/lib/utils';
+import { getRelatedBlogArticlesForLawyer } from '@/lib/blog-data';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -298,6 +299,40 @@ export default async function LawyerPage({
                             )}
                         </div>
                     )}
+
+                    {/* ── Related Blog Articles (internal linking for SEO) ── */}
+                    {(() => {
+                        const relatedArticles = getRelatedBlogArticlesForLawyer(fields, 2);
+                        if (relatedArticles.length === 0) return null;
+                        return (
+                            <div style={{ background: 'white', borderRadius: 20, border: '1px solid rgba(17,17,17,0.07)', padding: '24px 28px', marginTop: 16 }}>
+                                <h2 style={{ margin: '0 0 14px', fontSize: 13, fontWeight: 700, fontFamily: 'var(--font-space-mono)', letterSpacing: '0.05em', color: 'rgba(17,17,17,0.4)', textTransform: 'uppercase' }}>
+                                    Gerelateerde artikelen
+                                </h2>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                                    {relatedArticles.map(article => (
+                                        <Link key={article.slug} href={`/blog/${article.slug}`} style={{
+                                            display: 'flex', alignItems: 'flex-start', gap: 12,
+                                            textDecoration: 'none', padding: '12px 14px', borderRadius: 12,
+                                            background: '#F5F3EE', transition: 'background 0.2s',
+                                        }}>
+                                            <svg width="16" height="16" fill="none" stroke="#E63B2E" strokeWidth="2" viewBox="0 0 24 24" style={{ flexShrink: 0, marginTop: 2 }}>
+                                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                                            </svg>
+                                            <div>
+                                                <span style={{ fontSize: 13, fontWeight: 600, color: '#111111', lineHeight: 1.3, display: 'block' }}>
+                                                    {article.title}
+                                                </span>
+                                                <span style={{ fontSize: 11, fontFamily: 'var(--font-space-mono)', color: 'rgba(17,17,17,0.4)', marginTop: 2, display: 'block' }}>
+                                                    {article.readingTime} · {article.category}
+                                                </span>
+                                            </div>
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        );
+                    })()}
                 </main>
             </div>
         </>

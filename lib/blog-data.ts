@@ -213,3 +213,87 @@ export const BLOG_ARTICLES: BlogArticle[] = [
         ],
     },
 ];
+
+// ─── Specialty → related blog articles mapping ───────────────────────────────
+// Maps rechtsgebied slugs (from specialty pages) to relevant blog slugs.
+// Used for internal linking on specialty pages and lawyer profile pages.
+const SPECIALTY_BLOG_MAP: Record<string, string[]> = {
+    // Cost-related articles are relevant to ALL specialties
+    _general: ['wat-kost-een-advocaat', 'advocaat-kiezen-tips'],
+    // Specialty-specific mappings
+    familierecht: ['wat-kost-een-advocaat', 'gesubsidieerde-rechtsbijstand', 'pro-deo-advocaat'],
+    arbeidsrecht: ['wat-kost-een-advocaat', 'no-cure-no-pay-advocaat', 'advocaat-kiezen-tips'],
+    strafrecht: ['pro-deo-advocaat', 'gesubsidieerde-rechtsbijstand', 'wat-kost-een-advocaat'],
+    letselschaderecht: ['no-cure-no-pay-advocaat', 'wat-kost-een-advocaat', 'advocaat-kiezen-tips'],
+    huurrecht: ['wat-kost-een-advocaat', 'gesubsidieerde-rechtsbijstand', 'advocaat-kiezen-tips'],
+    bestuursrecht: ['wat-kost-een-advocaat', 'gesubsidieerde-rechtsbijstand', 'advocaat-kiezen-tips'],
+    erfrecht: ['wat-kost-een-advocaat', 'advocaat-kiezen-tips'],
+    ondernemingsrecht: ['wat-kost-een-advocaat', 'advocaat-kiezen-tips'],
+    immigratierecht: ['pro-deo-advocaat', 'gesubsidieerde-rechtsbijstand', 'wat-kost-een-advocaat'],
+    'sociaal-zekerheidsrecht': ['gesubsidieerde-rechtsbijstand', 'pro-deo-advocaat', 'wat-kost-een-advocaat'],
+};
+
+/**
+ * Returns up to `limit` related blog articles for a given specialty slug.
+ * Falls back to general cost/tip articles if no specialty-specific mapping exists.
+ */
+export function getRelatedBlogArticles(specialtySlug: string, limit = 3): BlogArticle[] {
+    const slugs = SPECIALTY_BLOG_MAP[specialtySlug] || SPECIALTY_BLOG_MAP._general;
+    return slugs
+        .slice(0, limit)
+        .map(slug => BLOG_ARTICLES.find(a => a.slug === slug))
+        .filter((a): a is BlogArticle => !!a);
+}
+
+/**
+ * Returns up to `limit` related blog articles for a lawyer based on their specialties.
+ * Deduplicates and prioritizes specialty-specific matches.
+ */
+export function getRelatedBlogArticlesForLawyer(rechtsgebieden: string[], limit = 2): BlogArticle[] {
+    const seen = new Set<string>();
+    const result: BlogArticle[] = [];
+
+    // Map rechtsgebied display names to slugs
+    const nameToSlug: Record<string, string> = {
+        'personen- en familierecht': 'familierecht',
+        'familierecht': 'familierecht',
+        'arbeidsrecht': 'arbeidsrecht',
+        'strafrecht': 'strafrecht',
+        'letselschade': 'letselschaderecht',
+        'letselschaderecht': 'letselschaderecht',
+        'huurrecht': 'huurrecht',
+        'bestuursrecht': 'bestuursrecht',
+        'erfrecht': 'erfrecht',
+        'ondernemingsrecht': 'ondernemingsrecht',
+        'immigratierecht': 'immigratierecht',
+        'vreemdelingenrecht': 'immigratierecht',
+        'sociaal zekerheidsrecht': 'sociaal-zekerheidsrecht',
+        'jeugdstrafrecht': 'strafrecht',
+    };
+
+    for (const field of rechtsgebieden) {
+        const slug = nameToSlug[field.toLowerCase()];
+        if (slug) {
+            for (const article of getRelatedBlogArticles(slug, 3)) {
+                if (!seen.has(article.slug)) {
+                    seen.add(article.slug);
+                    result.push(article);
+                    if (result.length >= limit) return result;
+                }
+            }
+        }
+    }
+
+    // Fallback: add general articles
+    if (result.length < limit) {
+        for (const article of getRelatedBlogArticles('_general', limit)) {
+            if (!seen.has(article.slug)) {
+                seen.add(article.slug);
+                result.push(article);
+                if (result.length >= limit) return result;
+            }
+        }
+    }
+
+    return result;
+}
